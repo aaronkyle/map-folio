@@ -1,0 +1,3601 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Map Folio</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_import/components/DOM.e44c551b.js">
+<link rel="modulepreload" href="./_import/components/cartographic-symbols.954f994c.js">
+<link rel="modulepreload" href="./_import/components/resize.49a78b92.js">
+<link rel="modulepreload" href="./_import/components/helper-functions-geometry.d59f5444.js">
+<link rel="modulepreload" href="./_import/components/rewind.93419501.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/_esm.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/_esm.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/_esm.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/_esm.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/_esm.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+import {registerFile} from "./_observablehq/stdlib.js";
+
+registerFile("./data/bali-forest.geo.json", {"name":"./data/bali-forest.geo.json","mimeType":"application/json","path":"./_file/data/bali-forest.geo.72fa20d2.json","lastModified":1669807166832});
+registerFile("./data/bali-rivers.geo.json", {"name":"./data/bali-rivers.geo.json","mimeType":"application/json","path":"./_file/data/bali-rivers.geo.ffe1a580.json","lastModified":1669807167469});
+registerFile("./data/bali-water-bodies.geo.json", {"name":"./data/bali-water-bodies.geo.json","mimeType":"application/json","path":"./_file/data/bali-water-bodies.geo.39aaefac.json","lastModified":1669807166885});
+registerFile("./data/bali@1.geo.json", {"name":"./data/bali@1.geo.json","mimeType":"application/json","path":"./_file/data/bali@1.geo.268b6d7a.json","lastModified":1669823578937});
+
+define({id: "b7aac292", inputs: ["view","Inputs"], outputs: ["activeFeatures"], body: (view,Inputs) => {
+const activeFeatures = view(Inputs.checkbox(["Rivers", "Water bodies", "Forest"], {
+  label: "Features",
+  value: ["Forest", "Rivers", "Water bodies"]
+}))
+return {activeFeatures};
+}});
+
+define({id: "b6d7a7e2", inputs: ["view","Inputs"], outputs: ["Γ"], body: (view,Inputs) => {
+const Γ = view(Inputs.range([-180, 180], {step:0.01, value:-80, label:"Rotate"}))
+return {Γ};
+}});
+
+define({id: "5c008e6b", inputs: ["view","Inputs"], outputs: ["tickPositions"], body: (view,Inputs) => {
+const tickPositions = view(Inputs.checkbox(["top", "right", "bottom", "left"], {
+  label: "Graticule Ticks",
+  value: ["top", "right", "bottom", "left"]
+}))
+return {tickPositions};
+}});
+
+define({id: "4795dd0b", inputs: ["view","Inputs"], outputs: ["graticuleTickInside"], body: (view,Inputs) => {
+const graticuleTickInside = view(Inputs.toggle({label: "Place graticule ticks inside", value: false}))
+return {graticuleTickInside};
+}});
+
+define({id: "678dc03c", inputs: ["display","resizable","resize","sampleMap","html"], outputs: ["map_view"], body: (display,resizable,resize,sampleMap,html) => {
+const map_view = display(resizable ? resize`${sampleMap}` : html`${sampleMap}`)
+return {map_view};
+}});
+
+define({id: "d3b0a17c", inputs: ["view","Inputs"], outputs: ["resizable"], body: (view,Inputs) => {
+const resizable = view(Inputs.toggle({label: "Show preview in a resizable container", value: false}))
+return {resizable};
+}});
+
+define({id: "caceea5c", inputs: ["view","Inputs"], outputs: ["debug"], body: (view,Inputs) => {
+const debug = view(Inputs.toggle({label: "Debug", value: false}))
+return {debug};
+}});
+
+define({id: "6db4f0f1", inputs: ["draw","d3","Γ","getSvgPatternUrl","baliGeo","getSvgPattern","activeFeatures","baliForestGeo","baliWaterBodiesGeo","baliRiversGeo","largestWaterBodiesGeo","tickPositions","graticuleTickInside","html","debug"], outputs: ["sampleMap"], body: (draw,d3,Γ,getSvgPatternUrl,baliGeo,getSvgPattern,activeFeatures,baliForestGeo,baliWaterBodiesGeo,baliRiversGeo,largestWaterBodiesGeo,tickPositions,graticuleTickInside,html,debug) => {
+// Rendered in the resize component above
+const sampleMap = draw(
+  {
+    projection: d3.geoTransverseMercator().rotate([Γ, 0, 0]),
+    background: getSvgPatternUrl("water"), //"hsl(217, 88%, 68%)",
+    // scaleBar: false,
+    // northingArrow: false,
+    extent: baliGeo,
+    patterns: [getSvgPattern("water")],
+    layers: [
+      {
+        geojson: baliGeo,
+        fill: "hsl(42, 46%, 93%)",
+        stroke: "hsl(39, 50%, 90%)"
+      },
+      {
+        active: activeFeatures.includes("Forest"),
+        geojson: baliForestGeo,
+        fill: "hsl(136, 40%, 65%)",
+        stroke: "none"
+      },
+      {
+        active: activeFeatures.includes("Water bodies"),
+        geojson: baliWaterBodiesGeo,
+        fill: "hsl(217, 88%, 79%)",
+        stroke: "none"
+      },
+      {
+        active: activeFeatures.includes("Rivers"),
+        geojson: baliRiversGeo,
+        stroke: "hsl(217, 88%, 68%)"
+      },
+      {
+        type: "graticule",
+        stroke: "white",
+        strokeOpacity: 0.5,
+        step: [0.5, 0.5]
+      },
+      {
+        active: activeFeatures.includes("Water bodies"),
+        type: "labels",
+        callout: true,
+        geojson: largestWaterBodiesGeo,
+        label: (f) => f.properties?.tags?.name,
+        dLat: (f, i) => ((i % 2 === 0 ? 1 : -1) * 1) / 10,
+        textAnchor: "start"
+      },
+      {
+        type: "graticule-labels",
+        step: [0.5, 0.5],
+        tickPositions,
+        place: graticuleTickInside ? "inside" : undefined
+      },
+      { type: "outline" }
+      // {
+      //   type: "custom",
+      //   render: function (svg, map) {
+      //     svg
+      //       .append("g")
+      //       .append("rect")
+      //       .attr("x", map.width / 2)
+      //       .attr("y", map.height / 2)
+      //       .attr("height", 100)
+      //       .attr("width", 200)
+      //       .style("fill", "red");
+      //   }
+      // }
+    ]
+  },
+  {
+    header: `Water Bodies in Bali, Indonesia`,
+    legend: [
+      { label: "Rivers", stroke: "hsl(217, 88%, 68%)" },
+      { label: "Forest", fill: "hsl(136, 40%, 65%)" },
+      { label: "Lakes", fill: "hsl(217, 88%, 79%)" },
+      {
+        label: "Ocean",
+        fill: getSvgPatternUrl("water") //"hsl(217, 88%, 68%)"
+      }
+    ],
+    content: html`<h3>About Bali</h3>
+<p>Bali is a province of Indonesia and the westernmost of the Lesser Sunda Islands. The province is Indonesia's main tourist destination.<br><a href="https://en.wikipedia.org/wiki/Bali">More on Wikipedia</a></p>`,
+    footer: html`<strong>Attribution:</strong> Data are from <a href="https://www.opensteetmap.org">www.opensteetmap.org</a>, made available under ODbL.`
+  },
+  { debug }
+)
+return {sampleMap};
+}});
+
+define({id: "195e179a", inputs: ["defaultFontFamily","drawMap","generateAsideElements","initializeStyles","html","ns"], outputs: ["draw"], body: (defaultFontFamily,drawMap,generateAsideElements,initializeStyles,html,ns) => {
+function draw(
+  mapOptions,
+  asideOptions,
+
+  // Folio Options
+  {
+    borderWidth = 1,
+    border = "whitesmoke",
+    padding = "1rem",
+    fontFamily = defaultFontFamily,
+    debug
+  } = {}
+) {
+  const mapEl = drawMap({ ...mapOptions, debug });
+  const asideEls = generateAsideElements({ ...asideOptions, debug }).filter(
+    Boolean
+  );
+  const hasSidebar = Boolean(asideEls.length);
+
+  const folioBorderWidth =
+    typeof borderWidth === "number" ? `${borderWidth}px` : borderWidth;
+
+  initializeStyles();
+
+  return html`<div class=${ns}  style=${{
+    fontFamily,
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "row-reverse",
+    justifyContent: "start",
+
+    borderWidth: folioBorderWidth,
+    borderColor: border,
+    borderStyle: "solid"
+  }}>
+  ${
+    hasSidebar
+      ? html`<div
+    class="flow flow-space-l ${ns}__aside"
+    style=${{
+      flex: "1 1 200px",
+      display: "flex",
+      flexDirection: "column",
+      fontSize: ".85rem",
+      padding,
+      borderWidth: 0,
+      borderColor: folioBorderWidth ? border : undefined,
+      borderStyle: "solid",
+      borderLeftWidth: folioBorderWidth,
+      marginLeft: folioBorderWidth ? `-${folioBorderWidth}` : undefined
+    }}>
+    ${asideEls}
+  </div>`
+      : undefined
+  }
+  
+  <div style=${{
+    flex: "4 1 600px",
+    padding,
+    borderWidth: 0,
+    borderColor: folioBorderWidth ? border : undefined,
+    borderStyle: "solid",
+    borderTopWidth: folioBorderWidth,
+    marginTop: folioBorderWidth ? `-${folioBorderWidth}` : undefined
+  }}>
+    ${mapEl}
+  </div>
+</div>`;
+}
+return {draw};
+}});
+
+define({id: "5b01faa0", inputs: ["html","generateLegendElements"], outputs: ["generateAsideElements"], body: (html,generateLegendElements) => {
+function generateAsideElements({
+  header,
+  footer,
+  legendTitle,
+  legend,
+  content,
+  headerTag = "h2",
+  footerColor = "#595959"
+} = {}) {
+  const headerEl = header
+    ? html`<header style=${{ fontSize: "1em" }}>${html({
+        raw: [`<${headerTag}>${header}`]
+      })}`
+    : undefined;
+  const footerEl = footer
+    ? html`<div style=${{
+        fontSize: ".85em",
+        color: footerColor,
+        paddingTop: "1rem",
+        marginTop: "auto"
+      }}>${footer}</div>`
+    : undefined;
+  const legendEl = legend
+    ? generateLegendElements(legend, legendTitle)
+    : undefined;
+
+  const contentEl = content
+    ? html`<div>
+  <div class="flow-child flow-space-s" style=${{
+    maxWidth: "640px"
+  }}>${content}</div>
+</div>`
+    : undefined;
+
+  return [headerEl, contentEl, legendEl, footerEl];
+}
+return {generateAsideElements};
+}});
+
+define({id: "73668483", inputs: ["html","generateSwatch"], outputs: ["generateLegendElements"], body: (html,generateSwatch) => {
+function generateLegendElements(legend, legendTitle = "Legend") {
+  
+  legend = legend.filter(Boolean).filter((d) => d.active !== false);
+  
+  const items = legend.map(
+    (l) =>
+      html`<li style=${{
+        display: "flex",
+        alignItems: "center",
+        gap: ".5rem",
+        flex: "1 1 200px"
+      }}><div style=${{
+        flex: 0,
+        position: "relative",
+        top: "-0.08141665em" // 1px / 12px
+      }}>${generateSwatch(l)}</div> ${l.label}`
+  );
+
+  return html`<div>
+  <div class="flow flow-space-s">
+    <h3>${legendTitle}</h3>
+    <ul style=${{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: ".5rem",
+      listStyle: "none",
+      paddingLeft: 0,
+      maxWidth: "100%",
+      fontSize: ".85em"
+    }}>
+    ${items}
+    </ul>
+  </div>
+</div>`;
+}
+return {generateLegendElements};
+}});
+
+define({id: "61abbc79", inputs: ["DOM","d3","symbols"], outputs: ["generateSwatch"], body: (DOM,d3,symbols) => {
+function generateSwatch({
+  symbol,
+  fill,
+  fillOpacity = 1,
+  stroke,
+  strokeWidth,
+  strokeDasharray = "none",
+  strokeOpacity = 1,
+  strokeLinecap = "round",
+  strokeLinejoin = "round",
+  swatchWidth = 32,
+  swatchHeight = 16
+} = {}) {
+  //const node = DOM.svg(swatchWidth, swatchHeight);
+  const node = DOM.svg(swatchWidth, swatchHeight);
+  const svg = d3.select(node).attr("style", "display: block");
+
+  strokeWidth = strokeWidth ?? (stroke != null ? 1 : 0);
+  if (symbol) {
+    const symbolSize = 16;
+    const maxSymbolSize = swatchHeight - 2;
+    const symbolObj = symbols[symbol] ?? symbols["circle"];
+    const mark = d3.symbol(symbolObj).size(symbolSize);
+    const path = svg
+      .append("path")
+      .attr("d", mark())
+      .attr("fill", fill)
+      .attr("transform", `translate(${[swatchWidth / 2, swatchHeight / 2]})`)
+      .attr("fill-opacity", fillOpacity)
+      .attr("stroke", stroke)
+      .attr("stroke-width", strokeWidth)
+      .attr("stroke-opacity", strokeOpacity)
+      .attr("stroke-linecap", strokeLinecap)
+      .attr("stroke-linejoin", strokeLinejoin)
+      .attr("stroke-dasharray", strokeDasharray);
+
+    setTimeout(() => {
+      // See https://observablehq.com/@d3/fitted-symbols
+      const bbox = path.node().getBBox();
+      const error = Math.min(
+        maxSymbolSize / bbox.width,
+        maxSymbolSize / bbox.height
+      );
+      mark.size(error * error * symbolSize);
+      path.attr("d", mark());
+    });
+  } else if (fill) {
+    svg
+      .append("rect")
+      .attr("x", strokeWidth / 2)
+      .attr("y", strokeWidth / 2)
+      .attr("width", swatchWidth - strokeWidth)
+      .attr("height", swatchHeight - strokeWidth)
+      .attr("fill", fill)
+      .attr("fill-opacity", fillOpacity)
+      .attr("stroke", stroke)
+      .attr("stroke-width", strokeWidth)
+      .attr("stroke-opacity", strokeOpacity)
+      .attr("stroke-linecap", strokeLinecap)
+      .attr("stroke-linejoin", strokeLinejoin)
+      .attr("stroke-dasharray", strokeDasharray);
+  } else {
+    svg
+      .append("line")
+      .attr("x1", strokeWidth / 2)
+      .attr("y1", swatchHeight / 2)
+      .attr("x2", swatchWidth - strokeWidth / 2)
+      .attr("y2", swatchHeight / 2)
+      .attr("fill", "none")
+      .attr("stroke", stroke)
+      .attr("stroke-width", strokeWidth)
+      .attr("stroke-opacity", strokeOpacity)
+      .attr("stroke-linecap", strokeLinecap)
+      .attr("stroke-linejoin", strokeLinejoin)
+      .attr("stroke-dasharray", strokeDasharray);
+  }
+  return node;
+}
+return {generateSwatch};
+}});
+
+define({id: "01c8e97b", inputs: ["d3","drawGraticuleLabels","getExtentAsFeature","featureCollectionFromLayers","getHeight","drawNorthArrow","drawScaleBar","DOM","drawSymbols","drawLabels","drawGraticules","drawOutline","drawSimpleLayer","html"], outputs: ["drawMap"], body: (d3,drawGraticuleLabels,getExtentAsFeature,featureCollectionFromLayers,getHeight,drawNorthArrow,drawScaleBar,DOM,drawSymbols,drawLabels,drawGraticules,drawOutline,drawSimpleLayer,html) => {
+function drawMap({
+  // Map
+  projection = d3.geoEquirectangular(),
+  extent,
+  width = 800,
+  layers = [],
+  padding = 10,
+  marginLeft = 1,
+  marginRight = 1,
+  marginTop = 1,
+  marginBottom = 1,
+  height,
+  background = "none",
+  scaleBar = true,
+  units = "km", // Supporst "km" | "miles"
+  northingArrow = true,
+  patterns,
+  debug
+} = {}) {
+  // Change to `max-width` if the map need not be expanded more than the width
+  const svgBaseStyles =
+    "display: block; width: 100%; height: auto; height: intrinsic;";
+
+  layers = layers.filter(Boolean).filter((d) => d.active !== false);
+
+  // Adjust margins based graticule-labels layer positions
+  const graticuleTicksLayer = layers.find(
+    (l) => l.type === "graticule-labels" && l.place != "inside"
+  );
+  if (graticuleTicksLayer) {
+    const graticulePositions =
+      graticuleTicksLayer.tickPositions || drawGraticuleLabels.positions;
+
+    if (graticulePositions.includes("top")) {
+      marginTop = Math.max(marginTop, drawGraticuleLabels.margins.y);
+    }
+    if (graticulePositions.includes("bottom")) {
+      marginBottom = Math.max(marginBottom, drawGraticuleLabels.margins.y);
+    }
+    if (graticulePositions.includes("left")) {
+      marginLeft = Math.max(marginLeft, drawGraticuleLabels.margins.x);
+    }
+    if (graticulePositions.includes("right")) {
+      marginRight = Math.max(marginRight, drawGraticuleLabels.margins.x);
+    }
+  }
+
+  const extentGeo =
+    extent != null
+      ? getExtentAsFeature(extent)
+      : featureCollectionFromLayers(layers);
+
+  height =
+    height ??
+    getHeight({
+      projection,
+      padding,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      width,
+      extentGeo
+    });
+
+  projection.fitExtent(
+    [
+      [padding + marginLeft, padding + marginTop],
+      [
+        width - 2 * padding - marginLeft - marginRight,
+        height - 2 * padding - marginTop - marginBottom
+      ]
+    ],
+    extentGeo
+  );
+  projection.clipExtent([
+    [marginLeft, marginTop],
+    [width - marginRight, height - marginBottom]
+  ]);
+
+  const hasMarkings = scaleBar || northingArrow;
+  const northArrowEl = northingArrow
+    ? drawNorthArrow({ projection, width, height })
+    : undefined;
+  const scaleBarEl = scaleBar
+    ? drawScaleBar({
+        projection,
+        width,
+        height,
+        padding,
+        marginTop,
+        marginRight,
+        marginBottom,
+        marginLeft,
+        units,
+        svgBaseStyles,
+        debug
+      })
+    : undefined;
+
+  //const node = DOM.svg(width, height);
+  const node = DOM.svg(width, height);
+  const svg = d3.select(node);
+  svg.attr("style", svgBaseStyles);
+
+  // Add patterns
+  if (patterns?.length) {
+    const defs = svg.select("defs").node()
+      ? svg.select("defs")
+      : svg.insert("defs", ":first-child");
+    patterns.forEach((p) => defs.node().appendChild(p));
+  }
+
+  const canvas = svg.append("g");
+  //.attr("transform", `translate(${marginLeft},${marginTop})`);
+
+  if (background != null || background !== "none") {
+    canvas
+      .append("rect")
+      .attr("x", marginLeft)
+      .attr("y", marginTop)
+      .attr("width", width - marginRight - marginLeft)
+      .attr("height", height - marginTop - marginBottom)
+      .attr("fill", background);
+  }
+
+  layers.forEach((l) => {
+    const selection = canvas.append("g");
+
+    switch (l.type) {
+      case "custom":
+        if (typeof l.render === "function") {
+          const { type, render, ...restOfLayer } = l;
+          l.render(
+            selection,
+            {
+              projection,
+              width,
+              height,
+              svg
+            },
+            restOfLayer
+          );
+        }
+        break;
+      case "symbols":
+        drawSymbols({
+          selection,
+          projection,
+          width,
+          height,
+          layer: l,
+          debug
+        });
+        break;
+      case "labels":
+        drawLabels({
+          selection,
+          projection,
+          width,
+          height,
+          layer: l,
+          debug
+        });
+        break;
+      case "graticule":
+        drawGraticules({
+          svg, // Needs add defs and cilp
+          selection,
+          projection,
+          width,
+          height,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+          layer: l,
+          debug
+        });
+        break;
+      case "graticule-labels":
+        drawGraticuleLabels({
+          selection: svg, // Don't need translated <g>
+          projection,
+          width,
+          height,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+          layer: l,
+          debug
+        });
+        break;
+      case "outline":
+        drawOutline({
+          selection,
+          projection,
+          width,
+          height,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+          layer: l,
+          debug
+        });
+        break;
+      default:
+        if (l.geojson) {
+          drawSimpleLayer({
+            selection,
+            projection,
+            width,
+            height,
+            layer: l,
+            debug
+          });
+        }
+        break;
+    }
+  });
+
+  if (debug) {
+    canvas
+      .append("rect")
+      .attr("stroke", "#f0f")
+      .attr("fill", "none")
+      .attr("x", padding + marginLeft)
+      .attr("y", padding + marginTop)
+      .attr("width", width - 2 * padding - marginLeft - marginRight)
+      .attr("height", height - 2 * padding - marginTop - marginBottom);
+  }
+
+  return hasMarkings
+    ? html`<div>
+  <div>${node}</div>
+  <div style=${{
+    display: "grid",
+    gridTemplateColumns: "1fr 3rem",
+    alignItems: "center",
+    paddingTop: "0.5rem"
+  }}>
+    <div style=${{ gridRow: 1, gridColumn: "1 / -1" }}> 
+      ${scaleBarEl}
+    </div>
+    <div style=${{
+      gridRow: 1,
+      gridColumn: 2,
+      justifyContent: "end"
+    }}>${northArrowEl}</div>
+  </div>
+</div>`
+    : node;
+}
+return {drawMap};
+}});
+
+define({id: "24ba4cd2", inputs: ["d3"], outputs: ["drawSimpleLayer"], body: (d3) => {
+function drawSimpleLayer({ selection, projection, layer }) {
+  const {
+    geojson,
+    fill = "none",
+    fillOpacity = "1",
+    stroke = "black",
+    strokeWidth = 0.75,
+    strokeOpacity = 1,
+    strokeLinecap = "round",
+    strokeLinejoin = "round",
+    strokeDasharray = "none",
+    style
+  } = layer;
+
+  if (geojson == null) return;
+
+  const features = Array.isArray(geojson.features)
+    ? [...geojson.features]
+    : [geojson];
+
+  selection
+    .selectAll("path")
+    .data(features)
+    .join("path")
+    .attr("d", d3.geoPath(projection))
+    .attr("fill", fill)
+    .attr("fill-opacity", fillOpacity)
+    .attr("stroke", stroke)
+    .attr("stroke-width", strokeWidth)
+    .attr("stroke-opacity", strokeOpacity)
+    .attr("stroke-linecap", strokeLinecap)
+    .attr("stroke-linejoin", strokeLinejoin)
+    .attr("stroke-dasharray", strokeDasharray)
+    .attr("style", style);
+}
+return {drawSimpleLayer};
+}});
+
+define({id: "af7de7dc", outputs: ["drawOutline"], body: () => {
+function drawOutline({
+  selection,
+  projection,
+  width,
+  height,
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  layer
+}) {
+  const {
+    stroke = "black",
+    strokeWidth = 1,
+    strokeOpacity = 1,
+    strokeLinecap = "round",
+    strokeLinejoin = "round",
+    strokeDasharray = "none",
+    style,
+    clipId
+  } = layer;
+
+  selection
+    .append("rect")
+    .attr("x", marginLeft)
+    .attr("y", marginTop)
+    .attr("width", width - marginLeft - marginRight)
+    .attr("height", height - marginTop - marginBottom)
+    .attr("fill", "none")
+    .attr("stroke", stroke)
+    .attr("stroke-width", strokeWidth)
+    .attr("stroke-opacity", strokeOpacity)
+    .attr("stroke-linecap", strokeLinecap)
+    .attr("stroke-linejoin", strokeLinejoin)
+    .attr("stroke-dasharray", strokeDasharray)
+    .attr("style", style);
+}
+return {drawOutline};
+}});
+
+define({id: "0957e667", inputs: ["DOM","d3"], outputs: ["drawGraticules"], body: (DOM,d3) => {
+function drawGraticules({
+  svg,
+  selection,
+  projection,
+  width,
+  height,
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  layer
+}) {
+  const {
+    geojson,
+    stroke = "#ccc",
+    strokeWidth = 1,
+    strokeOpacity = 1,
+    strokeLinecap = "round",
+    strokeLinejoin = "round",
+    strokeDasharray = 2,
+    style,
+    step = [10, 10],
+    //clipId = DOM.uid("clip"),
+    clipId = DOM.uid("clip"),
+    precision
+  } = layer;
+
+  const graticuleGenerator = d3.geoGraticule().step(step);
+  if (precision) {
+    graticuleGenerator.precision(precision);
+  }
+  const graticules = graticuleGenerator();
+  const path = d3.geoPath(projection);
+
+  const defs = svg.select("defs").node()
+    ? svg.select("defs")
+    : svg.insert("defs", ":first-child");
+
+  defs
+    .append("clipPath")
+    .attr("id", clipId.id)
+    .append("rect")
+    .attr("x", marginLeft)
+    .attr("y", marginTop)
+    .attr("width", width - (marginLeft + marginRight))
+    .attr("height", height - (marginTop + marginBottom));
+
+  selection
+    .append("path")
+    .attr("class", "graticules")
+    .attr("fill", "none")
+    .style("stroke", stroke)
+    .style("stroke-width", strokeWidth)
+    .style("stroke-opacity", strokeOpacity)
+    .style("stroke-linecap", strokeLinecap)
+    .style("stroke-linejoin", strokeLinejoin)
+    .style("stroke-dasharray", strokeDasharray)
+    .attr("style", style)
+    .attr("clip-path", clipId.id)
+    .attr("d", path(graticules));
+}
+return {drawGraticules};
+}});
+
+define({id: "192dbd0b", inputs: ["d3","getBoundsAsFeature","graticuleLabelPositions"], outputs: ["drawGraticuleLabels"], body: (d3,getBoundsAsFeature,graticuleLabelPositions) => {
+const drawGraticuleLabels = (() => {
+  const defaultPositions = ["top", "left", "bottom", "right"];
+
+  function drawGraticuleTicks({
+    selection,
+    projection,
+    width,
+    height,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    layer,
+    debug
+  }) {
+    const {
+      tickPositions = defaultPositions,
+      place = "outside", // or, "inside"
+      fontFamily = "inherit",
+      fontSize = "12px",
+      fontWeight = "500",
+      fontFill = "black",
+      fontStroke = "white",
+      fontStrokeWidth = 3,
+      stroke = "black",
+      strokeWidth = 1,
+      strokeOpacity = 1,
+      strokeLinecap = "round",
+      strokeLinejoin = "round",
+      tickSize = 4,
+      tickPadding = 4,
+      step = [10, 10],
+      closenessPrecision = 0.001,
+      precision,
+      formatLonTick,
+      formatLatTick
+    } = layer;
+
+    const formatLatLon = d3.format(".2~f");
+    const formatLongitude =
+      typeof formatLonTick === "function"
+        ? formatLonTick
+        : (x) => `${formatLatLon(Math.abs(x))}°${x < 0 ? "W" : "E"}`;
+    const formatLatitude =
+      typeof formatLatTick === "function"
+        ? formatLatTick
+        : (y) => `${formatLatLon(Math.abs(y))}°${y < 0 ? "S" : "N"}`;
+
+    const boundsGeo = getBoundsAsFeature({
+      projection,
+      width,
+      height,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      precision
+    });
+    const pos = graticuleLabelPositions(boundsGeo, { step });
+    const P = pos.map((p) => {
+      const [x, y] = projection(p);
+
+      p.x = x;
+      p.y = y;
+      return p;
+    });
+    const g = selection.append("g").attr("class", "graticule-labels");
+    let topTicks = [],
+      rightTicks = [],
+      bottomTicks = [],
+      leftTicks = [];
+
+    if (tickPositions.includes("top")) {
+      const topMost = d3.min(P, (p) => p.y);
+      let topTicks = pos.filter(
+        (p) => Math.abs(p.y - topMost) <= closenessPrecision
+      );
+      topTicks = topTicks.filter((t) => t.type === "longitude");
+      const topTickG = g
+        .append("g")
+        .attr("class", "bottom-graticules-ticks")
+        .selectAll(".tick")
+        .data(topTicks)
+        .join("g")
+        .attr("class", "tick")
+        .attr("transform", (d) => `translate(${d.x},${d.y})`);
+      topTickG
+        .append("line")
+        .attr("class", "tick-line")
+        .attr("y2", (place === "outside" ? -1 : 1) * tickSize);
+      topTickG
+        .append("text")
+        .attr("dy", (place === "outside" ? -1 : 1) * (tickSize + tickPadding))
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", place === "outside" ? "auto" : "hanging");
+    }
+
+    if (tickPositions.includes("bottom")) {
+      const bottomMost = d3.max(P, (p) => p.y);
+      let bottomTicks = pos.filter(
+        (p) => Math.abs(p.y - bottomMost) <= closenessPrecision
+      );
+      bottomTicks = bottomTicks.filter((t) => t.type === "longitude");
+      const bottomTickG = g
+        .append("g")
+        .attr("class", "bottom-graticules-ticks")
+        .selectAll(".tick")
+        .data(bottomTicks)
+        .join("g")
+        .attr("class", "tick")
+        .attr("transform", (d) => `translate(${d.x},${d.y})`);
+      bottomTickG
+        .append("line")
+        .attr("class", "tick-line")
+        .attr("y2", (place === "outside" ? 1 : -1) * tickSize);
+      bottomTickG
+        .append("text")
+        .attr("dy", (place === "outside" ? 1 : -1) * (tickSize + tickPadding))
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", place === "outside" ? "hanging" : "auto");
+    }
+    if (tickPositions.includes("right")) {
+      const rightMost = d3.max(P, (p) => p.x);
+      rightTicks = pos.filter(
+        (p) => Math.abs(p.x - rightMost) <= closenessPrecision
+      );
+      rightTicks = rightTicks.filter((t) => t.type === "latitude");
+
+      const rightTickG = g
+        .append("g")
+        .attr("class", "left-graticules-ticks")
+        .selectAll(".tick")
+        .data(rightTicks)
+        .join("g")
+        .attr("class", "tick")
+        .attr("transform", (d) => `translate(${d.x},${d.y})`);
+      rightTickG
+        .append("line")
+        .attr("class", "tick-line")
+        .attr("x2", (place === "outside" ? 1 : -1) * tickSize);
+      rightTickG
+        .append("text")
+        .attr("dy", (place === "outside" ? -1 : 1) * (tickSize + tickPadding))
+        .attr("dominant-baseline", place === "outside" ? "auto" : "hanging")
+        .attr("text-anchor", "middle")
+        .attr("transform", "rotate(90)");
+    }
+
+    if (tickPositions.includes("left")) {
+      const leftMost = d3.min(P, (p) => p.x);
+      leftTicks = pos.filter(
+        (p) => Math.abs(p.x - leftMost) <= closenessPrecision
+      );
+      leftTicks = leftTicks.filter((t) => t.type === "latitude");
+      const leftTickG = g
+        .append("g")
+        .attr("class", "left-graticules-ticks")
+        .selectAll(".tick")
+        .data(leftTicks)
+        .join("g")
+        .attr("class", "tick")
+        .attr("transform", (d) => `translate(${d.x},${d.y})`);
+      leftTickG
+        .append("line")
+        .attr("class", "tick-line")
+        .attr("x2", (place === "outside" ? -1 : 1) * tickSize);
+      leftTickG
+        .append("text")
+        .attr("dy", (place === "outside" ? -1 : 1) * (tickSize + tickPadding))
+        .attr("dominant-baseline", place === "outside" ? "auto" : "hanging")
+        .attr("text-anchor", "middle")
+        .attr("transform", "rotate(-90)");
+    }
+
+    // Add tick styles
+    g.selectAll(".tick-line")
+      .attr("stroke", stroke)
+      .attr("stroke-width", strokeWidth)
+      .attr("stroke-opacity", strokeOpacity)
+      .attr("stroke-linecap", strokeLinecap)
+      .attr("stroke-linejoin", strokeLinejoin);
+
+    // Add label text
+    g.selectAll("text")
+      .attr("font-family", fontFamily)
+      .attr("font-size", fontSize)
+      .attr("font-weight", fontWeight)
+      .attr("fill", fontFill)
+      .attr("stroke", fontStroke)
+      .attr("stroke-width", fontStrokeWidth)
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-linecap", "round")
+      .attr("paint-order", "stroke")
+      .text((d) =>
+        d.type === "longitude" ? formatLongitude(d[0]) : formatLatitude(d[1])
+      );
+
+    if (debug) {
+      g.append("path")
+        .attr("class", "debug-dgt-bounds")
+        .attr("d", d3.geoPath(projection)(boundsGeo))
+        .attr("fill", "#0ff")
+        .attr("fill-opacity", 0.5)
+        .attr("stroke", "none");
+
+      g.selectAll(".debug-dgt-corner")
+        .data([
+          [marginLeft, marginTop],
+          [width - marginRight, marginTop],
+          [width - marginRight, height - marginBottom],
+          [marginLeft, height - marginBottom]
+        ])
+        .join("circle")
+        .attr("class", "debug-dgt-corner")
+        .attr("fill", "#0ff")
+        .attr("cx", (d) => d[0])
+        .attr("cy", (d) => d[1])
+        .attr("r", 5);
+
+      g.append("g")
+        .attr("class", "graticules-intersection-points")
+        .selectAll(".graticules-intersection-point")
+        .data(pos)
+        .join("circle")
+        .attr("class", "graticules-intersection-point")
+        .attr("r", 4)
+        .attr("fill", "none")
+        .attr("stroke-width", 2)
+        .each(function (d) {
+          const [cx, cy] = projection(d);
+          d3.select(this)
+            .attr("cx", cx)
+            .attr("cy", cy)
+            .attr("stroke", d.type === "longitude" ? "red" : "orange");
+        });
+    }
+  }
+
+  drawGraticuleTicks.margins = {
+    x: 20,
+    y: 20
+  };
+  drawGraticuleTicks.positions = defaultPositions;
+
+  return drawGraticuleTicks;
+})()
+return {drawGraticuleLabels};
+}});
+
+define({id: "72aa9bcd", inputs: ["d3","computeLabelPole","multilineText"], outputs: ["drawLabels"], body: (d3,computeLabelPole,multilineText) => {
+function drawLabels({ selection, projection, layer, debug }) {
+  let {
+    geojson,
+    label,
+    callout = false,
+    fontFamily = "inherit",
+    fontSize = 12,
+    fontWeight = "500",
+    lineHeight,
+    fontFill = "black",
+    fontStroke = "white",
+    fontStrokeWidth = 3,
+    stroke = "black",
+    strokeWidth = 1,
+    strokeOpacity = 1,
+    strokeLinecap = "round",
+    strokeLinejoin = "round",
+    dominantBaseline,
+    textAnchor,
+    dLat = 0,
+    dLon = 0,
+    dCLat = 0,
+    dCLon = 0,
+    calloutStroke = "black",
+    calloutStrokeWidth = 1.25,
+    callOutStrokeDasharray = "none",
+    callOutStrokeOpacity = 1,
+    callOutStrokeLinecap = "round",
+    callOutStrokeLinejoin = "round",
+    calloutPadding = 3
+  } = layer;
+  if (geojson == null) return;
+
+  const labelGenerator =
+    typeof label === "function" ? label : () => label || "";
+  const F = Array.isArray(geojson.features) ? [...geojson.features] : [geojson];
+
+  const dLatFn = typeof dLat === "function" ? dLat : () => dLat;
+  const dLonFn = typeof dLon === "function" ? dLon : () => dLon;
+
+  const dCLatFn = typeof dCLat === "function" ? dCLat : () => dCLat;
+  const dCLonFn = typeof dCLon === "function" ? dCLon : () => dCLon;
+
+  const line = d3.line();
+
+  let LC = F.map(computeLabelPole);
+  let CC = [...LC];
+  LC = LC.map(([lon, lat], i) => [
+    lon + dLonFn(F[i], i),
+    lat + dLatFn(F[i], i)
+  ]);
+  CC = CC.map(([lon, lat], i) => [
+    lon + dCLonFn(F[i], i),
+    lat + dCLatFn(F[i], i)
+  ]);
+
+  selection.attr("class", "labels");
+
+  const labels = selection
+    .selectAll(".label-group")
+    .data(F)
+    .join("g")
+    .join("text")
+    .attr("class", "label-group");
+
+  labels
+    .append("text")
+    .attr("font-family", fontFamily)
+    .attr("font-size", fontSize)
+    .attr("font-weight", fontWeight)
+    .attr("fill", fontFill)
+    .attr("stroke", fontStroke)
+    .attr("stroke-width", fontStrokeWidth)
+    .attr("stroke-linejoin", strokeLinejoin)
+    .attr("stroke-linecap", strokeLinecap)
+    .attr("dominant-baseline", dominantBaseline)
+    .attr("text-anchor", textAnchor)
+    .attr("paint-order", "stroke");
+
+  // Insert label text and break in lines
+  labels.each(function (d, i) {
+    const s = d3.select(this).select("text");
+    const [x, y] = projection(LC[i]);
+
+    s.attr("x", x)
+      .attr("y", y)
+      .call(multilineText, {
+        fontSize,
+        lineHeight,
+        textAnchor,
+        dominantBaseline,
+        textFn: (d, i) => labelGenerator(d, i)
+      });
+
+    if (debug) {
+      selection
+        .append("circle")
+        .attr("cx", x)
+        .attr("cy", y)
+        .attr("r", 2)
+        .attr("fill", "#f0f");
+    }
+  });
+
+  // Add arrows
+  if (callout) {
+    labels.each(function (d, i) {
+      const label = d3.select(this);
+      const labelText = label.select("text");
+      const [x, y] = projection(LC[i]);
+      const [cx, cy] = projection(CC[i]);
+
+      // Draw the arrows on next cycle to get bounding box of the label
+      setTimeout(() => {
+        const padding = calloutPadding + calloutStrokeWidth / 2;
+        const rect = labelText.node().getBBox();
+        let x1 = cx;
+        let y1 = cy;
+        let x2 = rect.x;
+        let y2 = rect.y + rect.height + padding;
+        let x3 = rect.x + rect.width;
+        let y3 = y2;
+
+        // Connect on right edge
+        if (rect.x + rect.width / 2 < cx) {
+          x3 = rect.x;
+          x2 = rect.x + rect.width;
+        }
+
+        if (rect.y > cy) {
+          y2 = rect.y - padding;
+          y3 = y2;
+        }
+
+        label
+          .append("path")
+          .attr(
+            "d",
+            line([
+              [x1, y1],
+              [x2, y2],
+              [x3, y3]
+            ])
+          )
+          .attr("fill", "none")
+          .attr("stroke", calloutStroke)
+          .attr("stroke-width", calloutStrokeWidth)
+          .attr("stroke-dasharray", callOutStrokeDasharray)
+          .attr("stroke-opacity", callOutStrokeOpacity)
+          .attr("stroke-linecap", callOutStrokeLinecap)
+          .attr("stroke-join", callOutStrokeLinejoin);
+
+        if (debug) {
+          label
+            .append("rect")
+            .attr("x", rect.x)
+            .attr("y", rect.y)
+            .attr("width", rect.width)
+            .attr("height", rect.height)
+            .attr("fill", "none")
+            .attr("stroke", "#f0f");
+        }
+      });
+
+      if (debug) {
+        label
+          .append("circle")
+          .attr("cx", cx)
+          .attr("cy", cy)
+          .attr("r", 2)
+          .attr("fill", "none")
+          .attr("stroke", "#f0f");
+      }
+    });
+  }
+}
+return {drawLabels};
+}});
+
+define({id: "1e9ff93f", inputs: ["d3"], outputs: ["symbols"], body: (d3) => {
+const symbols = "circle cross diamond square star triangle wye"
+  .split(/ /)
+  .reduce((obj, n, i) => ({ [n]: d3.symbolsFill[i], ...obj }), {})
+
+return {symbols};
+}});
+
+define({id: "c0b25f17", inputs: ["d3","symbols"], outputs: ["drawSymbols"], body: (d3,symbols) => {
+function drawSymbols({ selection, projection, layer }) {
+  const {
+    geojson,
+    size = 64,
+    symbol = "circle",
+    fill = "black",
+    fillOpacity = "1",
+    stroke = "none",
+    strokeWidth = 0.75,
+    strokeOpacity = 1,
+    strokeLinecap = "round",
+    strokeLinejoin = "round",
+    strokeDasharray = "none",
+    style
+  } = layer;
+
+  if (geojson == null) return;
+
+  let features = Array.isArray(geojson.features)
+    ? [...geojson.features]
+    : [geojson];
+
+  const L = features.map((f) => {
+    if (f?.geometry?.type === "Point") return f.geometry.coordinates;
+    return d3.geoCentroid(f);
+  });
+
+  const symbolObj = symbols[symbol] ?? symbols["cirlce"];
+  const mark = d3.symbol(symbolObj).size(size);
+
+  selection
+    .append("g")
+    .selectAll("path")
+    .data(L)
+    .join("path")
+    .attr("d", mark())
+    .attr("transform", (pos) => `translate(${projection(pos)})`)
+    .attr("fill", fill)
+    .attr("fill-opacity", fillOpacity)
+    .attr("stroke", stroke)
+    .attr("stroke-width", strokeWidth)
+    .attr("stroke-opacity", strokeOpacity)
+    .attr("stroke-linecap", strokeLinecap)
+    .attr("stroke-linejoin", strokeLinejoin)
+    .attr("stroke-dasharray", strokeDasharray)
+    .attr("style", style);
+}
+return {drawSymbols};
+}});
+
+define({id: "5bd1cf4f", inputs: ["DOM","d3","d3GeoScaleBar"], outputs: ["drawScaleBar"], body: (DOM,d3,d3GeoScaleBar) => {
+function drawScaleBar({
+  projection,
+  width,
+  height,
+  padding,
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  units,
+  svgBaseStyles,
+  scaleHeight = 48,
+  debug
+}) {
+  //const node = DOM.svg(width, scaleHeight);
+  const node = DOM.svg(width, scaleHeight);
+  const svg = d3.select(node).attr("style", svgBaseStyles);
+
+  const x = 3;
+  const y = 24;
+
+  if (debug) {
+    svg
+      .append("rect")
+      .attr("width", width)
+      .attr("height", scaleHeight)
+      .attr("fill", "#ff0");
+  }
+
+  const scaleBar = d3GeoScaleBar
+    .geoScaleBar()
+    .projection(projection)
+    .size([width, height])
+    .label(units == "miles" ? "Miles" : "Kilometres")
+    .orient(d3GeoScaleBar.geoScaleTop)
+    .tickSize(6)
+    .left(0)
+    .top(0)
+    .units(
+      units === "miles"
+        ? d3GeoScaleBar.geoScaleMiles
+        : d3GeoScaleBar.geoScaleKilometers
+    );
+  const bar = svg
+    .append("g")
+    .attr("transform", `translate(${x},${y})`)
+    .append("g");
+
+  bar.call(scaleBar);
+  bar.attr("font-family", "inherit");
+
+  return node;
+}
+return {drawScaleBar};
+}});
+
+define({id: "52b0b142", inputs: ["computeAngleToNorthAtCentroid","svg","northArrow"], outputs: ["drawNorthArrow"], body: (computeAngleToNorthAtCentroid,svg,northArrow) => {
+function drawNorthArrow({ projection, width, height } = {}) {
+  const angle = computeAngleToNorthAtCentroid(projection, width, height);
+  return svg`<svg
+    viewBox=${[-31, -31, 62, 62]} width="62" height="62" style=${{
+    display: "block",
+    maxWidth: "100%",
+    height: "auto"
+  }}>
+<g 
+  transform="rotate(${angle} 0 0)
+             translate(-19 -31)
+  ">${northArrow()}</g><svg>`;
+}
+return {drawNorthArrow};
+}});
+
+define({id: "7cbc1bef", inputs: ["polylabel","d3"], outputs: ["computeLabelPole"], body: (polylabel,d3) => {
+function computeLabelPole(feat, precision) {
+  if (feat.geometry.type === "Polygon") {
+    return polylabel(feat.geometry.coordinates, precision);
+  }
+
+  return d3.geoCentroid(feat);
+}
+return {computeLabelPole};
+}});
+
+define({id: "38afec0a", inputs: ["d3"], outputs: ["multilineText"], body: (d3) => {
+function multilineText(
+  el,
+  {
+    fontSize = 10,
+    lineHeight = 1.05,
+    textAnchor = "middle",
+    dominantBaseline = "middle",
+    textFn
+  } = {}
+) {
+  el.each(function (d) {
+    const text = textFn(d);
+    if (text == null) return;
+
+    const lines = text.split("\n");
+    const textContentHeight = (lines.length - 1) * lineHeight * fontSize;
+
+    const el = d3.select(this);
+
+    const anchor = {
+      x: +el.attr("x"),
+      y: +el.attr("y")
+    };
+
+    const dy =
+      dominantBaseline === "middle"
+        ? -textContentHeight / 2
+        : dominantBaseline === "hanging"
+        ? -textContentHeight
+        : 0;
+
+    el
+      // .attr("font-family", fontFamily)
+      .attr("font-size", fontSize)
+      .attr("dominant-baseline", dominantBaseline)
+      .attr("text-anchor", textAnchor)
+      .selectAll("tspan")
+      .data(lines)
+      .join("tspan")
+      .text((d) => d)
+      .attr("x", anchor.x)
+      .attr("y", (d, i) => anchor.y + i * lineHeight * fontSize + dy);
+  });
+}
+return {multilineText};
+}});
+
+define({id: "13203fc9", inputs: ["radiansToDegrees"], outputs: ["computeAngleToNorthAtCentroid"], body: (radiansToDegrees) => {
+function computeAngleToNorthAtCentroid(projection, width, height) {
+  const [lon, lat] = projection.invert([width / 2, height / 2]);
+
+  const c = projection([lon, lat]);
+  const cNext = projection([lon + 1, lat]);
+
+  const rad = Math.atan2(cNext[0] - c[0], cNext[1] - c[1]);
+
+  return radiansToDegrees(Math.PI / 2 - rad);
+}
+return {computeAngleToNorthAtCentroid};
+}});
+
+define({id: "25cc5f37", outputs: ["radiansToDegrees"], body: () => {
+function radiansToDegrees(radians) {
+  const degrees = radians % (2 * Math.PI);
+  return (degrees * 180) / Math.PI;
+}
+return {radiansToDegrees};
+}});
+
+define({id: "7455602c", inputs: ["getHeight","d3","featureCollectionFromLayers","baliForestGeo","baliRiversGeo","display"], body: async (getHeight,d3,featureCollectionFromLayers,baliForestGeo,baliRiversGeo,display) => {
+display(await(
+getHeight({
+  projection: d3.geoMercator(),
+  extentGeo: featureCollectionFromLayers([
+    { geojson: baliForestGeo },
+    { geojson: baliRiversGeo }
+  ]),
+  width: 1000,
+  padding: 1
+})
+))
+}});
+
+define({id: "559f3027", inputs: ["d3"], outputs: ["getHeight"], body: (d3) => {
+function getHeight({
+  projection,
+  extentGeo,
+  width,
+  padding = 0,
+  marginTop = 0,
+  marginRight = 0,
+  marginLeft = 0,
+  marginBottom = 0
+}) {
+  const [[x0, y0], [x1, y1]] = d3
+    .geoPath(
+      projection.fitWidth(
+        width - padding * 2 - marginLeft - marginRight,
+        extentGeo
+      )
+    )
+    .bounds(extentGeo);
+
+  let trans = projection.translate();
+  projection.translate([
+    trans[0] + padding + marginLeft,
+    trans[1] + padding + marginTop
+  ]);
+
+  return Math.ceil(y1 - y0) + padding * 2 + marginTop + marginBottom;
+}
+return {getHeight};
+}});
+
+define({id: "73b386ee", inputs: ["featureCollectionFromLayers","baliForestGeo","baliRiversGeo","display"], body: async (featureCollectionFromLayers,baliForestGeo,baliRiversGeo,display) => {
+display(await(
+featureCollectionFromLayers([
+  { geojson: baliForestGeo },
+  { geojson: baliRiversGeo }
+])
+))
+}});
+
+define({id: "84ccadbd", outputs: ["featureCollectionFromLayers"], body: () => {
+// Based on https://github.com/neocarto/bertin/blob/main/src/helpers/height.js
+function featureCollectionFromLayers(layers) {
+  let L = layers
+    .map((l) => l.geojson)
+    .filter(Boolean)
+    .map((f) =>
+      Array.isArray(f.features) ? f.features : [f] // Assume it is a single feature
+    );
+
+  return {
+    type: "FeatureCollection",
+    features: L.flat()
+  };
+}
+return {featureCollectionFromLayers};
+}});
+
+define({id: "787bd22c", inputs: ["getExtentAsFeature","baliForestGeo","display"], body: async (getExtentAsFeature,baliForestGeo,display) => {
+display(await(
+getExtentAsFeature(baliForestGeo)
+))
+}});
+
+define({id: "739670b3", inputs: ["getExtentAsFeature","display"], body: async (getExtentAsFeature,display) => {
+display(await(
+getExtentAsFeature([
+  [114.4409786, -8.7116904],
+  [115.672946, -8.0982983]
+])
+))
+}});
+
+define({id: "007a9cff", inputs: ["bboxPolygon","bbox","rewind"], outputs: ["getExtentAsFeature"], body: (bboxPolygon,bbox,rewind) => {
+function getExtentAsFeature(extent) {
+  let feat;
+  if (
+    Array.isArray(extent) &&
+    Array.isArray(extent[0]) &&
+    Array.isArray(extent[1])
+  ) {
+    feat = bboxPolygon(extent.flat());
+  } else {
+    feat = bboxPolygon(bbox(extent));
+  }
+
+  return rewind(feat, true);
+}
+return {getExtentAsFeature};
+}});
+
+define({id: "51d554c0", inputs: ["pairUp","partitionLine"], outputs: ["getBoundsAsFeature"], body: (pairUp,partitionLine) => {
+function getBoundsAsFeature({
+  projection,
+  width,
+  height,
+  marginTop = 0,
+  marginRight = 0,
+  marginLeft = 0,
+  marginBottom = 0,
+  precision = 2.5
+} = {}) {
+  const p1 = [marginLeft, marginTop];
+  const p2 = [width - marginRight, marginTop];
+  const p3 = [width - marginRight, height - marginBottom];
+  const p4 = [marginLeft, height - marginBottom];
+
+  const vertices = [p1, p2, p3, p4, p1];
+
+  const viewportSize = Math.min(
+    width - marginRight - marginLeft,
+    height - marginTop - marginTop
+  );
+  const parts = Math.floor(viewportSize / precision);
+
+  let lines = pairUp(vertices);
+  lines = lines
+    .flatMap(([p1, p2]) => partitionLine(...p1, ...p2, parts))
+    .map((l) => l[0]);
+  lines = [...lines, p1];
+
+  return {
+    type: "Polygon",
+    coordinates: [lines.map((p) => projection.invert(p))]
+  };
+}
+return {getBoundsAsFeature};
+}});
+
+define({id: "24086012", outputs: ["pairUp"], body: () => {
+function pairUp(arr) {
+  return arr.reduce((res, cur, i, arr) => {
+    if (i === 0) return res;
+    return [...res, [arr[i - 1], cur]];
+  }, []);
+}
+return {pairUp};
+}});
+
+define({id: "5d268be6", outputs: ["graticuleLabelPositions"], body: () => {
+function graticuleLabelPositions(boundsGeo, { step = [1, 1] }) {
+  let i = [];
+  let poly = boundsGeo.coordinates[0].slice();
+  let cur = poly[0];
+  // poly.push(cur);
+  // let p0 = cur;
+  poly.forEach((p) => {
+    // Above 80° longitude, we can reduce the lines
+    // I think, that's default on d3.graticules
+    let latStep = Math.abs(p[1]) > 80 ? 90 : step[1];
+    let lonStep = step[0];
+    if (Math.floor(p[1] / latStep) != Math.floor(cur[1] / latStep)) {
+      p.type = "latitude";
+      i.push(p);
+    } else if (Math.floor(p[0] / lonStep) != Math.floor(cur[0] / lonStep)) {
+      p.type = "longitude";
+      i.push(p);
+    }
+    cur = p;
+  });
+
+  return i;
+}
+return {graticuleLabelPositions};
+}});
+
+define({id: "b13fe6e8", outputs: ["isNumber"], body: () => {
+function isNumber(value) {
+  return typeof value === "number" && isFinite(value);
+}
+return {isNumber};
+}});
+
+define({id: "b43adef6", inputs: ["htl"], outputs: ["html"], body: (htl) => {
+const html = htl.html
+return {html};
+}});
+
+define({id: "6716c0ca", inputs: ["htl"], outputs: ["svg"], body: (htl) => {
+const svg = htl.svg
+return {svg};
+}});
+
+define({id: "cd640831", outputs: ["defaultFontFamily"], body: () => {
+const defaultFontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"`
+return {defaultFontFamily};
+}});
+
+define({id: "29e294aa", inputs: ["Inputs","html","ns","invalidation"], outputs: ["initializeStyles"], body: (Inputs,html,ns,invalidation) => {
+const initializeStyles = (() => {
+  let initialized;
+  const inputsNs = Inputs.text().classList[0];
+
+  return () => {
+    if (initialized) return;
+
+    initialized = true;
+
+    const styles = html`<style>
+.${ns} .flow > * + * {
+  margin-top: var(--flow-space, 1rem);
+}
+
+.${ns} .flow-child > * > * + * {
+  margin-top: var(--flow-space, 1rem);
+}
+
+.${ns} .flow-space-xs {
+  --flow-space: .25rem;
+}
+
+.${ns} .flow-space-s {
+  --flow-space: .5rem;
+}
+
+.${ns} .flow-space-m {
+  --flow-space: 1rem;
+}
+
+.${ns} .flow-space-l {
+  --flow-space: 1.5rem;
+}
+
+.${ns} .flow-space-xl {
+  --flow-space: 1.5rem;
+}
+
+
+.${ns}__aside * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+</style>`;
+
+    document.querySelector("head").append(styles);
+
+    invalidation.then(
+      () => styles.parentNode && styles.parentNode.removeChild(styles)
+    );
+  };
+})()
+return {initializeStyles};
+}});
+
+define({id: "65a23044", inputs: ["Inputs"], outputs: ["ns"], body: (Inputs) => {
+const ns = (() => {
+  const base = Inputs.text().classList[0];
+  return base.replace("oi-", "map-folio-");
+})()
+return {ns};
+}});
+
+define({id: "6015a9af", inputs: ["svg"], outputs: ["patterns"], body: (svg) => {
+const patterns = new Map([
+  [
+    "water",
+    svg`<pattern patternTransform="scale(0.5)" patternUnits="userSpaceOnUse" width="24" height="24">
+  <rect width="24" height="24" fill="hsl(217, 88%, 68%)" />
+  <path fill="none" stroke-width=".75" stroke="hsl(217, 88%, 79%)" d="M12.5 9a.5.5 0 0 0-1 0h1ZM0 20.5c3.134 0 6.25-1.303 8.582-3.376C10.915 15.05 12.5 12.172 12.5 9h-1c0 2.828-1.415 5.45-3.582 7.376C5.75 18.303 2.866 19.5 0 19.5v1ZM11.5 9c0 3.172 1.585 6.05 3.918 8.124C17.75 19.197 20.866 20.5 24 20.5v-1c-2.866 0-5.75-1.197-7.918-3.124C13.915 14.45 12.5 11.828 12.5 9h-1Z" />
+</pattern>`
+  ]
+])
+return {patterns};
+}});
+
+define({id: "af0e034f", inputs: ["ns"], outputs: ["getSvgPatternId"], body: (ns) => {
+function getSvgPatternId(key, namespace = ns ?? "") {
+  return `${namespace}-pattern-${key}`;
+}
+return {getSvgPatternId};
+}});
+
+define({id: "2527d9d7", inputs: ["getSvgPatternId","display"], body: async (getSvgPatternId,display) => {
+display(await(
+getSvgPatternId('water')
+))
+}});
+
+define({id: "fad1904f", inputs: ["getSvgPatternId"], outputs: ["getSvgPatternUrl"], body: (getSvgPatternId) => {
+function getSvgPatternUrl(key) {
+  const id = getSvgPatternId(key);
+  return `url(#${id})`
+}
+return {getSvgPatternUrl};
+}});
+
+define({id: "cdfd49a0", inputs: ["patterns","getSvgPatternId"], outputs: ["getSvgPattern"], body: (patterns,getSvgPatternId) => {
+function getSvgPattern(key, patternsMap = patterns) {
+  const p = patternsMap.get(key);
+  if (p) {
+    const pClone = p.cloneNode(true);
+    const id = getSvgPatternId(key);
+    pClone.setAttribute("id", id);
+    return pClone;
+  }
+}
+return {getSvgPattern};
+}});
+
+define({id: "9e77218a", inputs: ["FileAttachment"], outputs: ["baliForestGeo"], body: (FileAttachment) => {
+const baliForestGeo = FileAttachment("./data/bali-forest.geo.json").json()
+return {baliForestGeo};
+}});
+
+define({id: "fbe47111", inputs: ["FileAttachment"], outputs: ["baliRiversGeo"], body: (FileAttachment) => {
+const baliRiversGeo = FileAttachment("./data/bali-rivers.geo.json").json()
+return {baliRiversGeo};
+}});
+
+define({id: "2e849196", inputs: ["baliWaterBodiesGeo","d3"], outputs: ["largestWaterBodiesGeo"], body: (baliWaterBodiesGeo,d3) => {
+const largestWaterBodiesGeo = (() => {
+  const top3WaterBodies = baliWaterBodiesGeo.features.sort(
+    (a, b) => d3.geoArea(b) - d3.geoArea(a)
+  );
+
+  return {
+    type: "FeatureCollection",
+    features: top3WaterBodies.slice(0, 3)
+  };
+})()
+return {largestWaterBodiesGeo};
+}});
+
+define({id: "57fe19b0", inputs: ["FileAttachment"], outputs: ["baliWaterBodiesGeo"], body: (FileAttachment) => {
+const baliWaterBodiesGeo = FileAttachment("./data/bali-water-bodies.geo.json").json()
+return {baliWaterBodiesGeo};
+}});
+
+define({id: "4238eb95", inputs: ["FileAttachment"], outputs: ["baliGeo"], body: (FileAttachment) => {
+const baliGeo = FileAttachment("./data/bali@1.geo.json").json()
+return {baliGeo};
+}});
+
+define({id: "9eb8fcb4", outputs: ["DOM"], body: async () => {
+const {DOM} = await import("./_import/components/DOM.e44c551b.js");
+
+return {DOM};
+}});
+
+define({id: "16f2bb52", inputs: ["DOM","display"], body: async (DOM,display) => {
+display(await(
+DOM.svg
+))
+}});
+
+define({id: "f4e99b98", outputs: ["northArrow"], body: async () => {
+const {northArrow} = await import("./_import/components/cartographic-symbols.954f994c.js");
+// import { northArrow } from "@categorise/cartographic-symbols"
+
+return {northArrow};
+}});
+
+define({id: "32059d8c", outputs: ["resize"], body: async () => {
+const {resize} = await import("./_import/components/resize.49a78b92.js");
+//import { resize } from "@saneef/resize";
+
+return {resize};
+}});
+
+define({id: "92a10d5b", outputs: ["partitionLine"], body: async () => {
+const {partitionLine} = await import("./_import/components/helper-functions-geometry.d59f5444.js");
+//import { partitionLine } from "@saneef/helper-functions-geometry"
+
+return {partitionLine};
+}});
+
+define({id: "60151c3c", outputs: ["rewind"], body: async () => {
+const {rewind} = await import("./_import/components/rewind.93419501.js");
+//import {rewind} from "@fil/rewind";
+
+return {rewind};
+}});
+
+define({id: "c2df4f8c", outputs: ["bbox"], body: async () => {
+const bbox = (await import("https://cdn.jsdelivr.net/npm/@turf/bbox/+esm")).default
+return {bbox};
+}});
+
+define({id: "56c1bdaf", outputs: ["bboxPolygon"], body: async () => {
+const bboxPolygon = (await import("https://cdn.jsdelivr.net/npm/@turf/bbox-polygon/+esm")).default
+return {bboxPolygon};
+}});
+
+define({id: "80693bde", outputs: ["d3GeoScaleBar"], body: () => {
+const d3GeoScaleBar = import("https://cdn.jsdelivr.net/npm/d3-geo-scale-bar/+esm")
+return {d3GeoScaleBar};
+}});
+
+define({id: "980d8581", outputs: ["polylabel"], body: async () => {
+const polylabel = (await import("https://cdn.skypack.dev/polylabel@1.1.0?min")).default
+return {polylabel};
+}});
+
+</script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Map Folio</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./map-folio">Map Folio</a></li>
+  </ol>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#implementation">Implementation</a></li>
+<li class="observablehq-secondary-link"><a href="#sample-datasets">Sample datasets</a></li>
+<li class="observablehq-secondary-link"><a href="#imports">Imports</a></li>
+<li class="observablehq-secondary-link"><a href="#changelog">Changelog</a></li>
+<li class="observablehq-secondary-link"><a href="#todos%2Foptimisations-for-future">ToDos/Optimisations For Future</a></li>
+</ol>
+</nav>
+</aside>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<h1 id="map-folio" tabindex="-1"><a class="observablehq-header-anchor" href="#map-folio">Map Folio</a></h1>
+<p>Map Folio is an experiment in creating maps using SVG, HTML, and D3.js. It is heavily inspired by Nicolas Lambert’s <a href="https://observablehq.com/collection/@neocartocnrs/bertin" target="_blank" rel="noopener noreferrer">Bertin.js</a>. Because of some peculiar requirements of the project, we went on to create our own, tiny, mapping library. The legend and markings needed to be readable on mobile screens. We wanted callout labels, graticule labels, and pattern fill for some geographic features. The whole code is written in an Observable notebook.</p>
+<div class="observablehq observablehq--block"><!--:b7aac292:--></div>
+<div class="observablehq observablehq--block"><!--:b6d7a7e2:--></div>
+<div class="observablehq observablehq--block"><!--:5c008e6b:--></div>
+<div class="observablehq observablehq--block"><!--:4795dd0b:--></div>
+<div class="observablehq observablehq--block"><!--:678dc03c:--></div>
+<div class="observablehq observablehq--block"><!--:d3b0a17c:--></div>
+<h2 id="implementation" tabindex="-1"><a class="observablehq-header-anchor" href="#implementation">Implementation</a></h2>
+<div class="observablehq observablehq--block"><!--:caceea5c:--></div>
+<div class="observablehq observablehq--block"><!--:6db4f0f1:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// Rendered in the resize component above</span>
+<span class="hljs-keyword">const</span> sampleMap = <span class="hljs-title function_">draw</span>(
+  {
+    <span class="hljs-attr">projection</span>: d3.<span class="hljs-title function_">geoTransverseMercator</span>().<span class="hljs-title function_">rotate</span>([Γ, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]),
+    <span class="hljs-attr">background</span>: <span class="hljs-title function_">getSvgPatternUrl</span>(<span class="hljs-string">"water"</span>), <span class="hljs-comment">//"hsl(217, 88%, 68%)",</span>
+    <span class="hljs-comment">// scaleBar: false,</span>
+    <span class="hljs-comment">// northingArrow: false,</span>
+    <span class="hljs-attr">extent</span>: baliGeo,
+    <span class="hljs-attr">patterns</span>: [<span class="hljs-title function_">getSvgPattern</span>(<span class="hljs-string">"water"</span>)],
+    <span class="hljs-attr">layers</span>: [
+      {
+        <span class="hljs-attr">geojson</span>: baliGeo,
+        <span class="hljs-attr">fill</span>: <span class="hljs-string">"hsl(42, 46%, 93%)"</span>,
+        <span class="hljs-attr">stroke</span>: <span class="hljs-string">"hsl(39, 50%, 90%)"</span>
+      },
+      {
+        <span class="hljs-attr">active</span>: activeFeatures.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"Forest"</span>),
+        <span class="hljs-attr">geojson</span>: baliForestGeo,
+        <span class="hljs-attr">fill</span>: <span class="hljs-string">"hsl(136, 40%, 65%)"</span>,
+        <span class="hljs-attr">stroke</span>: <span class="hljs-string">"none"</span>
+      },
+      {
+        <span class="hljs-attr">active</span>: activeFeatures.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"Water bodies"</span>),
+        <span class="hljs-attr">geojson</span>: baliWaterBodiesGeo,
+        <span class="hljs-attr">fill</span>: <span class="hljs-string">"hsl(217, 88%, 79%)"</span>,
+        <span class="hljs-attr">stroke</span>: <span class="hljs-string">"none"</span>
+      },
+      {
+        <span class="hljs-attr">active</span>: activeFeatures.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"Rivers"</span>),
+        <span class="hljs-attr">geojson</span>: baliRiversGeo,
+        <span class="hljs-attr">stroke</span>: <span class="hljs-string">"hsl(217, 88%, 68%)"</span>
+      },
+      {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">"graticule"</span>,
+        <span class="hljs-attr">stroke</span>: <span class="hljs-string">"white"</span>,
+        <span class="hljs-attr">strokeOpacity</span>: <span class="hljs-number">0.5</span>,
+        <span class="hljs-attr">step</span>: [<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>]
+      },
+      {
+        <span class="hljs-attr">active</span>: activeFeatures.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"Water bodies"</span>),
+        <span class="hljs-attr">type</span>: <span class="hljs-string">"labels"</span>,
+        <span class="hljs-attr">callout</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">geojson</span>: largestWaterBodiesGeo,
+        <span class="hljs-attr">label</span>: <span class="hljs-function">(<span class="hljs-params">f</span>) =&gt;</span> f.<span class="hljs-property">properties</span>?.<span class="hljs-property">tags</span>?.<span class="hljs-property">name</span>,
+        <span class="hljs-attr">dLat</span>: <span class="hljs-function">(<span class="hljs-params">f, i</span>) =&gt;</span> ((i % <span class="hljs-number">2</span> === <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>) * <span class="hljs-number">1</span>) / <span class="hljs-number">10</span>,
+        <span class="hljs-attr">textAnchor</span>: <span class="hljs-string">"start"</span>
+      },
+      {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">"graticule-labels"</span>,
+        <span class="hljs-attr">step</span>: [<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>],
+        tickPositions,
+        <span class="hljs-attr">place</span>: graticuleTickInside ? <span class="hljs-string">"inside"</span> : <span class="hljs-literal">undefined</span>
+      },
+      { <span class="hljs-attr">type</span>: <span class="hljs-string">"outline"</span> }
+      <span class="hljs-comment">// {</span>
+      <span class="hljs-comment">//   type: "custom",</span>
+      <span class="hljs-comment">//   render: function (svg, map) {</span>
+      <span class="hljs-comment">//     svg</span>
+      <span class="hljs-comment">//       .append("g")</span>
+      <span class="hljs-comment">//       .append("rect")</span>
+      <span class="hljs-comment">//       .attr("x", map.width / 2)</span>
+      <span class="hljs-comment">//       .attr("y", map.height / 2)</span>
+      <span class="hljs-comment">//       .attr("height", 100)</span>
+      <span class="hljs-comment">//       .attr("width", 200)</span>
+      <span class="hljs-comment">//       .style("fill", "red");</span>
+      <span class="hljs-comment">//   }</span>
+      <span class="hljs-comment">// }</span>
+    ]
+  },
+  {
+    <span class="hljs-attr">header</span>: <span class="hljs-string">`Water Bodies in Bali, Indonesia`</span>,
+    <span class="hljs-attr">legend</span>: [
+      { <span class="hljs-attr">label</span>: <span class="hljs-string">"Rivers"</span>, <span class="hljs-attr">stroke</span>: <span class="hljs-string">"hsl(217, 88%, 68%)"</span> },
+      { <span class="hljs-attr">label</span>: <span class="hljs-string">"Forest"</span>, <span class="hljs-attr">fill</span>: <span class="hljs-string">"hsl(136, 40%, 65%)"</span> },
+      { <span class="hljs-attr">label</span>: <span class="hljs-string">"Lakes"</span>, <span class="hljs-attr">fill</span>: <span class="hljs-string">"hsl(217, 88%, 79%)"</span> },
+      {
+        <span class="hljs-attr">label</span>: <span class="hljs-string">"Ocean"</span>,
+        <span class="hljs-attr">fill</span>: <span class="hljs-title function_">getSvgPatternUrl</span>(<span class="hljs-string">"water"</span>) <span class="hljs-comment">//"hsl(217, 88%, 68%)"</span>
+      }
+    ],
+    <span class="hljs-attr">content</span>: html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>About Bali<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Bali is a province of Indonesia and the westernmost of the Lesser Sunda Islands. The province is Indonesia's main tourist destination.<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://en.wikipedia.org/wiki/Bali"</span>&gt;</span>More on Wikipedia<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>`</span>,
+    <span class="hljs-attr">footer</span>: html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Attribution:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> Data are from <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://www.opensteetmap.org"</span>&gt;</span>www.opensteetmap.org<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>, made available under ODbL.`</span>
+  },
+  { debug }
+)
+</code></pre>
+<div class="observablehq observablehq--block"><!--:195e179a:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">
+  mapOptions,
+  asideOptions,
+
+  <span class="hljs-comment">// Folio Options</span>
+  {
+    borderWidth = <span class="hljs-number">1</span>,
+    border = <span class="hljs-string">"whitesmoke"</span>,
+    padding = <span class="hljs-string">"1rem"</span>,
+    fontFamily = defaultFontFamily,
+    debug
+  } = {}
+</span>) {
+  <span class="hljs-keyword">const</span> mapEl = <span class="hljs-title function_">drawMap</span>({ ...mapOptions, debug });
+  <span class="hljs-keyword">const</span> asideEls = <span class="hljs-title function_">generateAsideElements</span>({ ...asideOptions, debug }).<span class="hljs-title function_">filter</span>(
+    <span class="hljs-title class_">Boolean</span>
+  );
+  <span class="hljs-keyword">const</span> hasSidebar = <span class="hljs-title class_">Boolean</span>(asideEls.<span class="hljs-property">length</span>);
+
+  <span class="hljs-keyword">const</span> folioBorderWidth =
+    <span class="hljs-keyword">typeof</span> borderWidth === <span class="hljs-string">"number"</span> ? <span class="hljs-string">`<span class="hljs-subst">${borderWidth}</span>px`</span> : borderWidth;
+
+  <span class="hljs-title function_">initializeStyles</span>();
+
+  <span class="hljs-keyword">return</span> html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=</span></span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="hljs-tag">  <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+    fontFamily,
+    display: <span class="hljs-string">"flex"</span>,
+    flexWrap: <span class="hljs-string">"wrap"</span>,
+    flexDirection: <span class="hljs-string">"row-reverse"</span>,
+    justifyContent: <span class="hljs-string">"start"</span>,
+
+    borderWidth: folioBorderWidth,
+    borderColor: border,
+    borderStyle: <span class="hljs-string">"solid"</span>
+  }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span>
+  </span><span class="hljs-subst">${
+    hasSidebar
+      ? html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+    <span class="hljs-attr">class</span>=<span class="hljs-string">"flow flow-space-l </span></span></span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">__aside"</span>
+    <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+      flex: <span class="hljs-string">"1 1 200px"</span>,
+      display: <span class="hljs-string">"flex"</span>,
+      flexDirection: <span class="hljs-string">"column"</span>,
+      fontSize: <span class="hljs-string">".85rem"</span>,
+      padding,
+      borderWidth: <span class="hljs-number">0</span>,
+      borderColor: folioBorderWidth ? border : <span class="hljs-literal">undefined</span>,
+      borderStyle: <span class="hljs-string">"solid"</span>,
+      borderLeftWidth: folioBorderWidth,
+      marginLeft: folioBorderWidth ? <span class="hljs-string">`-<span class="hljs-subst">${folioBorderWidth}</span>`</span> : <span class="hljs-literal">undefined</span>
+    }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span>
+    </span><span class="hljs-subst">${asideEls}</span><span class="language-xml">
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>`</span>
+      : <span class="hljs-literal">undefined</span>
+  }</span><span class="language-xml">
+  
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+    flex: <span class="hljs-string">"4 1 600px"</span>,
+    padding,
+    borderWidth: <span class="hljs-number">0</span>,
+    borderColor: folioBorderWidth ? border : <span class="hljs-literal">undefined</span>,
+    borderStyle: <span class="hljs-string">"solid"</span>,
+    borderTopWidth: folioBorderWidth,
+    marginTop: folioBorderWidth ? <span class="hljs-string">`-<span class="hljs-subst">${folioBorderWidth}</span>`</span> : <span class="hljs-literal">undefined</span>
+  }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span>
+    </span><span class="hljs-subst">${mapEl}</span><span class="language-xml">
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>`</span>;
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:5b01faa0:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">generateAsideElements</span>(<span class="hljs-params">{
+  header,
+  footer,
+  legendTitle,
+  legend,
+  content,
+  headerTag = <span class="hljs-string">"h2"</span>,
+  footerColor = <span class="hljs-string">"#595959"</span>
+} = {}</span>) {
+  <span class="hljs-keyword">const</span> headerEl = header
+    ? html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{ fontSize: <span class="hljs-string">"1em"</span> }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span></span><span class="hljs-subst">${html({
+        raw: [<span class="hljs-string">`&lt;<span class="hljs-subst">${headerTag}</span>&gt;<span class="hljs-subst">${header}</span>`</span>]
+      })}</span><span class="language-xml">`</span>
+    : <span class="hljs-literal">undefined</span>;
+  <span class="hljs-keyword">const</span> footerEl = footer
+    ? html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+        fontSize: <span class="hljs-string">".85em"</span>,
+        color: footerColor,
+        paddingTop: <span class="hljs-string">"1rem"</span>,
+        marginTop: <span class="hljs-string">"auto"</span>
+      }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span></span><span class="hljs-subst">${footer}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>`</span>
+    : <span class="hljs-literal">undefined</span>;
+  <span class="hljs-keyword">const</span> legendEl = legend
+    ? <span class="hljs-title function_">generateLegendElements</span>(legend, legendTitle)
+    : <span class="hljs-literal">undefined</span>;
+
+  <span class="hljs-keyword">const</span> contentEl = content
+    ? html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flow-child flow-space-s"</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+    maxWidth: <span class="hljs-string">"640px"</span>
+  }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span></span><span class="hljs-subst">${content}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>`</span>
+    : <span class="hljs-literal">undefined</span>;
+
+  <span class="hljs-keyword">return</span> [headerEl, contentEl, legendEl, footerEl];
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:73668483:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">generateLegendElements</span>(<span class="hljs-params">legend, legendTitle = <span class="hljs-string">"Legend"</span></span>) {
+  
+  legend = legend.<span class="hljs-title function_">filter</span>(<span class="hljs-title class_">Boolean</span>).<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">active</span> !== <span class="hljs-literal">false</span>);
+  
+  <span class="hljs-keyword">const</span> items = legend.<span class="hljs-title function_">map</span>(
+    <span class="hljs-function">(<span class="hljs-params">l</span>) =&gt;</span>
+      html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+        display: <span class="hljs-string">"flex"</span>,
+        alignItems: <span class="hljs-string">"center"</span>,
+        gap: <span class="hljs-string">".5rem"</span>,
+        flex: <span class="hljs-string">"1 1 200px"</span>
+      }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+        flex: <span class="hljs-number">0</span>,
+        position: <span class="hljs-string">"relative"</span>,
+        top: <span class="hljs-string">"-0.08141665em"</span> // 1px / 12px
+      }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span></span><span class="hljs-subst">${generateSwatch(l)}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> </span><span class="hljs-subst">${l.label}</span><span class="language-xml">`</span>
+  );
+
+  <span class="hljs-keyword">return</span> html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flow flow-space-s"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span></span><span class="hljs-subst">${legendTitle}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+      display: <span class="hljs-string">"flex"</span>,
+      flexWrap: <span class="hljs-string">"wrap"</span>,
+      gap: <span class="hljs-string">".5rem"</span>,
+      listStyle: <span class="hljs-string">"none"</span>,
+      paddingLeft: <span class="hljs-number">0</span>,
+      maxWidth: <span class="hljs-string">"100%"</span>,
+      fontSize: <span class="hljs-string">".85em"</span>
+    }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span>
+    </span><span class="hljs-subst">${items}</span><span class="language-xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>`</span>;
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:61abbc79:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">generateSwatch</span>(<span class="hljs-params">{
+  symbol,
+  fill,
+  fillOpacity = <span class="hljs-number">1</span>,
+  stroke,
+  strokeWidth,
+  strokeDasharray = <span class="hljs-string">"none"</span>,
+  strokeOpacity = <span class="hljs-number">1</span>,
+  strokeLinecap = <span class="hljs-string">"round"</span>,
+  strokeLinejoin = <span class="hljs-string">"round"</span>,
+  swatchWidth = <span class="hljs-number">32</span>,
+  swatchHeight = <span class="hljs-number">16</span>
+} = {}</span>) {
+  <span class="hljs-comment">//const node = DOM.svg(swatchWidth, swatchHeight);</span>
+  <span class="hljs-keyword">const</span> node = <span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">svg</span>(swatchWidth, swatchHeight);
+  <span class="hljs-keyword">const</span> svg = d3.<span class="hljs-title function_">select</span>(node).<span class="hljs-title function_">attr</span>(<span class="hljs-string">"style"</span>, <span class="hljs-string">"display: block"</span>);
+
+  strokeWidth = strokeWidth ?? (stroke != <span class="hljs-literal">null</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">if</span> (symbol) {
+    <span class="hljs-keyword">const</span> symbolSize = <span class="hljs-number">16</span>;
+    <span class="hljs-keyword">const</span> maxSymbolSize = swatchHeight - <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">const</span> symbolObj = symbols[symbol] ?? symbols[<span class="hljs-string">"circle"</span>];
+    <span class="hljs-keyword">const</span> mark = d3.<span class="hljs-title function_">symbol</span>(symbolObj).<span class="hljs-title function_">size</span>(symbolSize);
+    <span class="hljs-keyword">const</span> path = svg
+      .<span class="hljs-title function_">append</span>(<span class="hljs-string">"path"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"d"</span>, <span class="hljs-title function_">mark</span>())
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, fill)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">`translate(<span class="hljs-subst">${[swatchWidth / <span class="hljs-number">2</span>, swatchHeight / <span class="hljs-number">2</span>]}</span>)`</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill-opacity"</span>, fillOpacity)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, stroke)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, strokeWidth)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-opacity"</span>, strokeOpacity)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, strokeLinecap)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linejoin"</span>, strokeLinejoin)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-dasharray"</span>, strokeDasharray);
+
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-comment">// See https://observablehq.com/@d3/fitted-symbols</span>
+      <span class="hljs-keyword">const</span> bbox = path.<span class="hljs-title function_">node</span>().<span class="hljs-title function_">getBBox</span>();
+      <span class="hljs-keyword">const</span> error = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(
+        maxSymbolSize / bbox.<span class="hljs-property">width</span>,
+        maxSymbolSize / bbox.<span class="hljs-property">height</span>
+      );
+      mark.<span class="hljs-title function_">size</span>(error * error * symbolSize);
+      path.<span class="hljs-title function_">attr</span>(<span class="hljs-string">"d"</span>, <span class="hljs-title function_">mark</span>());
+    });
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fill) {
+    svg
+      .<span class="hljs-title function_">append</span>(<span class="hljs-string">"rect"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, strokeWidth / <span class="hljs-number">2</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, strokeWidth / <span class="hljs-number">2</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, swatchWidth - strokeWidth)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, swatchHeight - strokeWidth)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, fill)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill-opacity"</span>, fillOpacity)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, stroke)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, strokeWidth)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-opacity"</span>, strokeOpacity)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, strokeLinecap)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linejoin"</span>, strokeLinejoin)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-dasharray"</span>, strokeDasharray);
+  } <span class="hljs-keyword">else</span> {
+    svg
+      .<span class="hljs-title function_">append</span>(<span class="hljs-string">"line"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x1"</span>, strokeWidth / <span class="hljs-number">2</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y1"</span>, swatchHeight / <span class="hljs-number">2</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x2"</span>, swatchWidth - strokeWidth / <span class="hljs-number">2</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y2"</span>, swatchHeight / <span class="hljs-number">2</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"none"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, stroke)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, strokeWidth)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-opacity"</span>, strokeOpacity)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, strokeLinecap)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linejoin"</span>, strokeLinejoin)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-dasharray"</span>, strokeDasharray);
+  }
+  <span class="hljs-keyword">return</span> node;
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:01c8e97b:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">drawMap</span>(<span class="hljs-params">{
+  // <span class="hljs-built_in">Map</span>
+  projection = d3.geoEquirectangular(),
+  extent,
+  width = <span class="hljs-number">800</span>,
+  layers = [],
+  padding = <span class="hljs-number">10</span>,
+  marginLeft = <span class="hljs-number">1</span>,
+  marginRight = <span class="hljs-number">1</span>,
+  marginTop = <span class="hljs-number">1</span>,
+  marginBottom = <span class="hljs-number">1</span>,
+  height,
+  background = <span class="hljs-string">"none"</span>,
+  scaleBar = <span class="hljs-literal">true</span>,
+  units = <span class="hljs-string">"km"</span>, // Supporst <span class="hljs-string">"km"</span> | <span class="hljs-string">"miles"</span>
+  northingArrow = <span class="hljs-literal">true</span>,
+  patterns,
+  debug
+} = {}</span>) {
+  <span class="hljs-comment">// Change to `max-width` if the map need not be expanded more than the width</span>
+  <span class="hljs-keyword">const</span> svgBaseStyles =
+    <span class="hljs-string">"display: block; width: 100%; height: auto; height: intrinsic;"</span>;
+
+  layers = layers.<span class="hljs-title function_">filter</span>(<span class="hljs-title class_">Boolean</span>).<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">active</span> !== <span class="hljs-literal">false</span>);
+
+  <span class="hljs-comment">// Adjust margins based graticule-labels layer positions</span>
+  <span class="hljs-keyword">const</span> graticuleTicksLayer = layers.<span class="hljs-title function_">find</span>(
+    <span class="hljs-function">(<span class="hljs-params">l</span>) =&gt;</span> l.<span class="hljs-property">type</span> === <span class="hljs-string">"graticule-labels"</span> &amp;&amp; l.<span class="hljs-property">place</span> != <span class="hljs-string">"inside"</span>
+  );
+  <span class="hljs-keyword">if</span> (graticuleTicksLayer) {
+    <span class="hljs-keyword">const</span> graticulePositions =
+      graticuleTicksLayer.<span class="hljs-property">tickPositions</span> || drawGraticuleLabels.<span class="hljs-property">positions</span>;
+
+    <span class="hljs-keyword">if</span> (graticulePositions.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"top"</span>)) {
+      marginTop = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(marginTop, drawGraticuleLabels.<span class="hljs-property">margins</span>.<span class="hljs-property">y</span>);
+    }
+    <span class="hljs-keyword">if</span> (graticulePositions.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"bottom"</span>)) {
+      marginBottom = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(marginBottom, drawGraticuleLabels.<span class="hljs-property">margins</span>.<span class="hljs-property">y</span>);
+    }
+    <span class="hljs-keyword">if</span> (graticulePositions.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"left"</span>)) {
+      marginLeft = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(marginLeft, drawGraticuleLabels.<span class="hljs-property">margins</span>.<span class="hljs-property">x</span>);
+    }
+    <span class="hljs-keyword">if</span> (graticulePositions.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"right"</span>)) {
+      marginRight = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(marginRight, drawGraticuleLabels.<span class="hljs-property">margins</span>.<span class="hljs-property">x</span>);
+    }
+  }
+
+  <span class="hljs-keyword">const</span> extentGeo =
+    extent != <span class="hljs-literal">null</span>
+      ? <span class="hljs-title function_">getExtentAsFeature</span>(extent)
+      : <span class="hljs-title function_">featureCollectionFromLayers</span>(layers);
+
+  height =
+    height ??
+    <span class="hljs-title function_">getHeight</span>({
+      projection,
+      padding,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      width,
+      extentGeo
+    });
+
+  projection.<span class="hljs-title function_">fitExtent</span>(
+    [
+      [padding + marginLeft, padding + marginTop],
+      [
+        width - <span class="hljs-number">2</span> * padding - marginLeft - marginRight,
+        height - <span class="hljs-number">2</span> * padding - marginTop - marginBottom
+      ]
+    ],
+    extentGeo
+  );
+  projection.<span class="hljs-title function_">clipExtent</span>([
+    [marginLeft, marginTop],
+    [width - marginRight, height - marginBottom]
+  ]);
+
+  <span class="hljs-keyword">const</span> hasMarkings = scaleBar || northingArrow;
+  <span class="hljs-keyword">const</span> northArrowEl = northingArrow
+    ? <span class="hljs-title function_">drawNorthArrow</span>({ projection, width, height })
+    : <span class="hljs-literal">undefined</span>;
+  <span class="hljs-keyword">const</span> scaleBarEl = scaleBar
+    ? <span class="hljs-title function_">drawScaleBar</span>({
+        projection,
+        width,
+        height,
+        padding,
+        marginTop,
+        marginRight,
+        marginBottom,
+        marginLeft,
+        units,
+        svgBaseStyles,
+        debug
+      })
+    : <span class="hljs-literal">undefined</span>;
+
+  <span class="hljs-comment">//const node = DOM.svg(width, height);</span>
+  <span class="hljs-keyword">const</span> node = <span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">svg</span>(width, height);
+  <span class="hljs-keyword">const</span> svg = d3.<span class="hljs-title function_">select</span>(node);
+  svg.<span class="hljs-title function_">attr</span>(<span class="hljs-string">"style"</span>, svgBaseStyles);
+
+  <span class="hljs-comment">// Add patterns</span>
+  <span class="hljs-keyword">if</span> (patterns?.<span class="hljs-property">length</span>) {
+    <span class="hljs-keyword">const</span> defs = svg.<span class="hljs-title function_">select</span>(<span class="hljs-string">"defs"</span>).<span class="hljs-title function_">node</span>()
+      ? svg.<span class="hljs-title function_">select</span>(<span class="hljs-string">"defs"</span>)
+      : svg.<span class="hljs-title function_">insert</span>(<span class="hljs-string">"defs"</span>, <span class="hljs-string">":first-child"</span>);
+    patterns.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> defs.<span class="hljs-title function_">node</span>().<span class="hljs-title function_">appendChild</span>(p));
+  }
+
+  <span class="hljs-keyword">const</span> canvas = svg.<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>);
+  <span class="hljs-comment">//.attr("transform", `translate(${marginLeft},${marginTop})`);</span>
+
+  <span class="hljs-keyword">if</span> (background != <span class="hljs-literal">null</span> || background !== <span class="hljs-string">"none"</span>) {
+    canvas
+      .<span class="hljs-title function_">append</span>(<span class="hljs-string">"rect"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, marginLeft)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, marginTop)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, width - marginRight - marginLeft)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, height - marginTop - marginBottom)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, background);
+  }
+
+  layers.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">l</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> selection = canvas.<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>);
+
+    <span class="hljs-keyword">switch</span> (l.<span class="hljs-property">type</span>) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"custom"</span>:
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> l.<span class="hljs-property">render</span> === <span class="hljs-string">"function"</span>) {
+          <span class="hljs-keyword">const</span> { type, render, ...restOfLayer } = l;
+          l.<span class="hljs-title function_">render</span>(
+            selection,
+            {
+              projection,
+              width,
+              height,
+              svg
+            },
+            restOfLayer
+          );
+        }
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"symbols"</span>:
+        <span class="hljs-title function_">drawSymbols</span>({
+          selection,
+          projection,
+          width,
+          height,
+          <span class="hljs-attr">layer</span>: l,
+          debug
+        });
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"labels"</span>:
+        <span class="hljs-title function_">drawLabels</span>({
+          selection,
+          projection,
+          width,
+          height,
+          <span class="hljs-attr">layer</span>: l,
+          debug
+        });
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"graticule"</span>:
+        <span class="hljs-title function_">drawGraticules</span>({
+          svg, <span class="hljs-comment">// Needs add defs and cilp</span>
+          selection,
+          projection,
+          width,
+          height,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+          <span class="hljs-attr">layer</span>: l,
+          debug
+        });
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"graticule-labels"</span>:
+        <span class="hljs-title function_">drawGraticuleLabels</span>({
+          <span class="hljs-attr">selection</span>: svg, <span class="hljs-comment">// Don't need translated &lt;g&gt;</span>
+          projection,
+          width,
+          height,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+          <span class="hljs-attr">layer</span>: l,
+          debug
+        });
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"outline"</span>:
+        <span class="hljs-title function_">drawOutline</span>({
+          selection,
+          projection,
+          width,
+          height,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+          <span class="hljs-attr">layer</span>: l,
+          debug
+        });
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">if</span> (l.<span class="hljs-property">geojson</span>) {
+          <span class="hljs-title function_">drawSimpleLayer</span>({
+            selection,
+            projection,
+            width,
+            height,
+            <span class="hljs-attr">layer</span>: l,
+            debug
+          });
+        }
+        <span class="hljs-keyword">break</span>;
+    }
+  });
+
+  <span class="hljs-keyword">if</span> (debug) {
+    canvas
+      .<span class="hljs-title function_">append</span>(<span class="hljs-string">"rect"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"#f0f"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"none"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, padding + marginLeft)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, padding + marginTop)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, width - <span class="hljs-number">2</span> * padding - marginLeft - marginRight)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, height - <span class="hljs-number">2</span> * padding - marginTop - marginBottom);
+  }
+
+  <span class="hljs-keyword">return</span> hasMarkings
+    ? html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><span class="hljs-subst">${node}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+    display: <span class="hljs-string">"grid"</span>,
+    gridTemplateColumns: <span class="hljs-string">"1fr 3rem"</span>,
+    alignItems: <span class="hljs-string">"center"</span>,
+    paddingTop: <span class="hljs-string">"0.5rem"</span>
+  }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{ gridRow: <span class="hljs-number">1</span>, gridColumn: <span class="hljs-string">"1 / -1"</span> }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span> 
+      </span><span class="hljs-subst">${scaleBarEl}</span><span class="language-xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=</span></span><span class="hljs-subst">${{
+      gridRow: <span class="hljs-number">1</span>,
+      gridColumn: <span class="hljs-number">2</span>,
+      justifyContent: <span class="hljs-string">"end"</span>
+    }}</span><span class="language-xml"><span class="hljs-tag">&gt;</span></span><span class="hljs-subst">${northArrowEl}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>`</span>
+    : node;
+}
+</code></pre>
+<h3 id="layers" tabindex="-1"><a class="observablehq-header-anchor" href="#layers">Layers</a></h3>
+<div class="observablehq observablehq--block"><!--:24ba4cd2:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">drawSimpleLayer</span>(<span class="hljs-params">{ selection, projection, layer }</span>) {
+  <span class="hljs-keyword">const</span> {
+    geojson,
+    fill = <span class="hljs-string">"none"</span>,
+    fillOpacity = <span class="hljs-string">"1"</span>,
+    stroke = <span class="hljs-string">"black"</span>,
+    strokeWidth = <span class="hljs-number">0.75</span>,
+    strokeOpacity = <span class="hljs-number">1</span>,
+    strokeLinecap = <span class="hljs-string">"round"</span>,
+    strokeLinejoin = <span class="hljs-string">"round"</span>,
+    strokeDasharray = <span class="hljs-string">"none"</span>,
+    style
+  } = layer;
+
+  <span class="hljs-keyword">if</span> (geojson == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+
+  <span class="hljs-keyword">const</span> features = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(geojson.<span class="hljs-property">features</span>)
+    ? [...geojson.<span class="hljs-property">features</span>]
+    : [geojson];
+
+  selection
+    .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"path"</span>)
+    .<span class="hljs-title function_">data</span>(features)
+    .<span class="hljs-title function_">join</span>(<span class="hljs-string">"path"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"d"</span>, d3.<span class="hljs-title function_">geoPath</span>(projection))
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, fill)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill-opacity"</span>, fillOpacity)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, stroke)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, strokeWidth)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-opacity"</span>, strokeOpacity)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, strokeLinecap)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linejoin"</span>, strokeLinejoin)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-dasharray"</span>, strokeDasharray)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"style"</span>, style);
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:af7de7dc:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">drawOutline</span>(<span class="hljs-params">{
+  selection,
+  projection,
+  width,
+  height,
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  layer
+}</span>) {
+  <span class="hljs-keyword">const</span> {
+    stroke = <span class="hljs-string">"black"</span>,
+    strokeWidth = <span class="hljs-number">1</span>,
+    strokeOpacity = <span class="hljs-number">1</span>,
+    strokeLinecap = <span class="hljs-string">"round"</span>,
+    strokeLinejoin = <span class="hljs-string">"round"</span>,
+    strokeDasharray = <span class="hljs-string">"none"</span>,
+    style,
+    clipId
+  } = layer;
+
+  selection
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"rect"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, marginLeft)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, marginTop)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, width - marginLeft - marginRight)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, height - marginTop - marginBottom)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"none"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, stroke)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, strokeWidth)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-opacity"</span>, strokeOpacity)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, strokeLinecap)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linejoin"</span>, strokeLinejoin)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-dasharray"</span>, strokeDasharray)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"style"</span>, style);
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:0957e667:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">drawGraticules</span>(<span class="hljs-params">{
+  svg,
+  selection,
+  projection,
+  width,
+  height,
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  layer
+}</span>) {
+  <span class="hljs-keyword">const</span> {
+    geojson,
+    stroke = <span class="hljs-string">"#ccc"</span>,
+    strokeWidth = <span class="hljs-number">1</span>,
+    strokeOpacity = <span class="hljs-number">1</span>,
+    strokeLinecap = <span class="hljs-string">"round"</span>,
+    strokeLinejoin = <span class="hljs-string">"round"</span>,
+    strokeDasharray = <span class="hljs-number">2</span>,
+    style,
+    step = [<span class="hljs-number">10</span>, <span class="hljs-number">10</span>],
+    <span class="hljs-comment">//clipId = DOM.uid("clip"),</span>
+    clipId = <span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">uid</span>(<span class="hljs-string">"clip"</span>),
+    precision
+  } = layer;
+
+  <span class="hljs-keyword">const</span> graticuleGenerator = d3.<span class="hljs-title function_">geoGraticule</span>().<span class="hljs-title function_">step</span>(step);
+  <span class="hljs-keyword">if</span> (precision) {
+    graticuleGenerator.<span class="hljs-title function_">precision</span>(precision);
+  }
+  <span class="hljs-keyword">const</span> graticules = <span class="hljs-title function_">graticuleGenerator</span>();
+  <span class="hljs-keyword">const</span> path = d3.<span class="hljs-title function_">geoPath</span>(projection);
+
+  <span class="hljs-keyword">const</span> defs = svg.<span class="hljs-title function_">select</span>(<span class="hljs-string">"defs"</span>).<span class="hljs-title function_">node</span>()
+    ? svg.<span class="hljs-title function_">select</span>(<span class="hljs-string">"defs"</span>)
+    : svg.<span class="hljs-title function_">insert</span>(<span class="hljs-string">"defs"</span>, <span class="hljs-string">":first-child"</span>);
+
+  defs
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"clipPath"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"id"</span>, clipId.<span class="hljs-property">id</span>)
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"rect"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, marginLeft)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, marginTop)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, width - (marginLeft + marginRight))
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, height - (marginTop + marginBottom));
+
+  selection
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"path"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"graticules"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"none"</span>)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"stroke"</span>, stroke)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"stroke-width"</span>, strokeWidth)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"stroke-opacity"</span>, strokeOpacity)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"stroke-linecap"</span>, strokeLinecap)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"stroke-linejoin"</span>, strokeLinejoin)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"stroke-dasharray"</span>, strokeDasharray)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"style"</span>, style)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"clip-path"</span>, clipId.<span class="hljs-property">id</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"d"</span>, <span class="hljs-title function_">path</span>(graticules));
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:192dbd0b:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> drawGraticuleLabels = (<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> defaultPositions = [<span class="hljs-string">"top"</span>, <span class="hljs-string">"left"</span>, <span class="hljs-string">"bottom"</span>, <span class="hljs-string">"right"</span>];
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">drawGraticuleTicks</span>(<span class="hljs-params">{
+    selection,
+    projection,
+    width,
+    height,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    layer,
+    debug
+  }</span>) {
+    <span class="hljs-keyword">const</span> {
+      tickPositions = defaultPositions,
+      place = <span class="hljs-string">"outside"</span>, <span class="hljs-comment">// or, "inside"</span>
+      fontFamily = <span class="hljs-string">"inherit"</span>,
+      fontSize = <span class="hljs-string">"12px"</span>,
+      fontWeight = <span class="hljs-string">"500"</span>,
+      fontFill = <span class="hljs-string">"black"</span>,
+      fontStroke = <span class="hljs-string">"white"</span>,
+      fontStrokeWidth = <span class="hljs-number">3</span>,
+      stroke = <span class="hljs-string">"black"</span>,
+      strokeWidth = <span class="hljs-number">1</span>,
+      strokeOpacity = <span class="hljs-number">1</span>,
+      strokeLinecap = <span class="hljs-string">"round"</span>,
+      strokeLinejoin = <span class="hljs-string">"round"</span>,
+      tickSize = <span class="hljs-number">4</span>,
+      tickPadding = <span class="hljs-number">4</span>,
+      step = [<span class="hljs-number">10</span>, <span class="hljs-number">10</span>],
+      closenessPrecision = <span class="hljs-number">0.001</span>,
+      precision,
+      formatLonTick,
+      formatLatTick
+    } = layer;
+
+    <span class="hljs-keyword">const</span> formatLatLon = d3.<span class="hljs-title function_">format</span>(<span class="hljs-string">".2~f"</span>);
+    <span class="hljs-keyword">const</span> formatLongitude =
+      <span class="hljs-keyword">typeof</span> formatLonTick === <span class="hljs-string">"function"</span>
+        ? formatLonTick
+        : <span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${formatLatLon(<span class="hljs-built_in">Math</span>.abs(x))}</span>°<span class="hljs-subst">${x &lt; <span class="hljs-number">0</span> ? <span class="hljs-string">"W"</span> : <span class="hljs-string">"E"</span>}</span>`</span>;
+    <span class="hljs-keyword">const</span> formatLatitude =
+      <span class="hljs-keyword">typeof</span> formatLatTick === <span class="hljs-string">"function"</span>
+        ? formatLatTick
+        : <span class="hljs-function">(<span class="hljs-params">y</span>) =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${formatLatLon(<span class="hljs-built_in">Math</span>.abs(y))}</span>°<span class="hljs-subst">${y &lt; <span class="hljs-number">0</span> ? <span class="hljs-string">"S"</span> : <span class="hljs-string">"N"</span>}</span>`</span>;
+
+    <span class="hljs-keyword">const</span> boundsGeo = <span class="hljs-title function_">getBoundsAsFeature</span>({
+      projection,
+      width,
+      height,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      precision
+    });
+    <span class="hljs-keyword">const</span> pos = <span class="hljs-title function_">graticuleLabelPositions</span>(boundsGeo, { step });
+    <span class="hljs-keyword">const</span> P = pos.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> {
+      <span class="hljs-keyword">const</span> [x, y] = <span class="hljs-title function_">projection</span>(p);
+
+      p.<span class="hljs-property">x</span> = x;
+      p.<span class="hljs-property">y</span> = y;
+      <span class="hljs-keyword">return</span> p;
+    });
+    <span class="hljs-keyword">const</span> g = selection.<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>).<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"graticule-labels"</span>);
+    <span class="hljs-keyword">let</span> topTicks = [],
+      rightTicks = [],
+      bottomTicks = [],
+      leftTicks = [];
+
+    <span class="hljs-keyword">if</span> (tickPositions.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"top"</span>)) {
+      <span class="hljs-keyword">const</span> topMost = d3.<span class="hljs-title function_">min</span>(P, <span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> p.<span class="hljs-property">y</span>);
+      <span class="hljs-keyword">let</span> topTicks = pos.<span class="hljs-title function_">filter</span>(
+        <span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(p.<span class="hljs-property">y</span> - topMost) &lt;= closenessPrecision
+      );
+      topTicks = topTicks.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">t</span>) =&gt;</span> t.<span class="hljs-property">type</span> === <span class="hljs-string">"longitude"</span>);
+      <span class="hljs-keyword">const</span> topTickG = g
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"bottom-graticules-ticks"</span>)
+        .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".tick"</span>)
+        .<span class="hljs-title function_">data</span>(topTicks)
+        .<span class="hljs-title function_">join</span>(<span class="hljs-string">"g"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tick"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-string">`translate(<span class="hljs-subst">${d.x}</span>,<span class="hljs-subst">${d.y}</span>)`</span>);
+      topTickG
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"line"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tick-line"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y2"</span>, (place === <span class="hljs-string">"outside"</span> ? -<span class="hljs-number">1</span> : <span class="hljs-number">1</span>) * tickSize);
+      topTickG
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"text"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dy"</span>, (place === <span class="hljs-string">"outside"</span> ? -<span class="hljs-number">1</span> : <span class="hljs-number">1</span>) * (tickSize + tickPadding))
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"middle"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dominant-baseline"</span>, place === <span class="hljs-string">"outside"</span> ? <span class="hljs-string">"auto"</span> : <span class="hljs-string">"hanging"</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (tickPositions.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"bottom"</span>)) {
+      <span class="hljs-keyword">const</span> bottomMost = d3.<span class="hljs-title function_">max</span>(P, <span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> p.<span class="hljs-property">y</span>);
+      <span class="hljs-keyword">let</span> bottomTicks = pos.<span class="hljs-title function_">filter</span>(
+        <span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(p.<span class="hljs-property">y</span> - bottomMost) &lt;= closenessPrecision
+      );
+      bottomTicks = bottomTicks.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">t</span>) =&gt;</span> t.<span class="hljs-property">type</span> === <span class="hljs-string">"longitude"</span>);
+      <span class="hljs-keyword">const</span> bottomTickG = g
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"bottom-graticules-ticks"</span>)
+        .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".tick"</span>)
+        .<span class="hljs-title function_">data</span>(bottomTicks)
+        .<span class="hljs-title function_">join</span>(<span class="hljs-string">"g"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tick"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-string">`translate(<span class="hljs-subst">${d.x}</span>,<span class="hljs-subst">${d.y}</span>)`</span>);
+      bottomTickG
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"line"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tick-line"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y2"</span>, (place === <span class="hljs-string">"outside"</span> ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>) * tickSize);
+      bottomTickG
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"text"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dy"</span>, (place === <span class="hljs-string">"outside"</span> ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>) * (tickSize + tickPadding))
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"middle"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dominant-baseline"</span>, place === <span class="hljs-string">"outside"</span> ? <span class="hljs-string">"hanging"</span> : <span class="hljs-string">"auto"</span>);
+    }
+    <span class="hljs-keyword">if</span> (tickPositions.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"right"</span>)) {
+      <span class="hljs-keyword">const</span> rightMost = d3.<span class="hljs-title function_">max</span>(P, <span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> p.<span class="hljs-property">x</span>);
+      rightTicks = pos.<span class="hljs-title function_">filter</span>(
+        <span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(p.<span class="hljs-property">x</span> - rightMost) &lt;= closenessPrecision
+      );
+      rightTicks = rightTicks.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">t</span>) =&gt;</span> t.<span class="hljs-property">type</span> === <span class="hljs-string">"latitude"</span>);
+
+      <span class="hljs-keyword">const</span> rightTickG = g
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"left-graticules-ticks"</span>)
+        .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".tick"</span>)
+        .<span class="hljs-title function_">data</span>(rightTicks)
+        .<span class="hljs-title function_">join</span>(<span class="hljs-string">"g"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tick"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-string">`translate(<span class="hljs-subst">${d.x}</span>,<span class="hljs-subst">${d.y}</span>)`</span>);
+      rightTickG
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"line"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tick-line"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x2"</span>, (place === <span class="hljs-string">"outside"</span> ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>) * tickSize);
+      rightTickG
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"text"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dy"</span>, (place === <span class="hljs-string">"outside"</span> ? -<span class="hljs-number">1</span> : <span class="hljs-number">1</span>) * (tickSize + tickPadding))
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dominant-baseline"</span>, place === <span class="hljs-string">"outside"</span> ? <span class="hljs-string">"auto"</span> : <span class="hljs-string">"hanging"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"middle"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"rotate(90)"</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (tickPositions.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"left"</span>)) {
+      <span class="hljs-keyword">const</span> leftMost = d3.<span class="hljs-title function_">min</span>(P, <span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> p.<span class="hljs-property">x</span>);
+      leftTicks = pos.<span class="hljs-title function_">filter</span>(
+        <span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(p.<span class="hljs-property">x</span> - leftMost) &lt;= closenessPrecision
+      );
+      leftTicks = leftTicks.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">t</span>) =&gt;</span> t.<span class="hljs-property">type</span> === <span class="hljs-string">"latitude"</span>);
+      <span class="hljs-keyword">const</span> leftTickG = g
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"left-graticules-ticks"</span>)
+        .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".tick"</span>)
+        .<span class="hljs-title function_">data</span>(leftTicks)
+        .<span class="hljs-title function_">join</span>(<span class="hljs-string">"g"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tick"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-string">`translate(<span class="hljs-subst">${d.x}</span>,<span class="hljs-subst">${d.y}</span>)`</span>);
+      leftTickG
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"line"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tick-line"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x2"</span>, (place === <span class="hljs-string">"outside"</span> ? -<span class="hljs-number">1</span> : <span class="hljs-number">1</span>) * tickSize);
+      leftTickG
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"text"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dy"</span>, (place === <span class="hljs-string">"outside"</span> ? -<span class="hljs-number">1</span> : <span class="hljs-number">1</span>) * (tickSize + tickPadding))
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dominant-baseline"</span>, place === <span class="hljs-string">"outside"</span> ? <span class="hljs-string">"auto"</span> : <span class="hljs-string">"hanging"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"middle"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"rotate(-90)"</span>);
+    }
+
+    <span class="hljs-comment">// Add tick styles</span>
+    g.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".tick-line"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, stroke)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, strokeWidth)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-opacity"</span>, strokeOpacity)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, strokeLinecap)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linejoin"</span>, strokeLinejoin);
+
+    <span class="hljs-comment">// Add label text</span>
+    g.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"text"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-family"</span>, fontFamily)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-size"</span>, fontSize)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-weight"</span>, fontWeight)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, fontFill)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, fontStroke)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, fontStrokeWidth)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linejoin"</span>, <span class="hljs-string">"round"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, <span class="hljs-string">"round"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"paint-order"</span>, <span class="hljs-string">"stroke"</span>)
+      .<span class="hljs-title function_">text</span>(<span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span>
+        d.<span class="hljs-property">type</span> === <span class="hljs-string">"longitude"</span> ? <span class="hljs-title function_">formatLongitude</span>(d[<span class="hljs-number">0</span>]) : <span class="hljs-title function_">formatLatitude</span>(d[<span class="hljs-number">1</span>])
+      );
+
+    <span class="hljs-keyword">if</span> (debug) {
+      g.<span class="hljs-title function_">append</span>(<span class="hljs-string">"path"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"debug-dgt-bounds"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"d"</span>, d3.<span class="hljs-title function_">geoPath</span>(projection)(boundsGeo))
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"#0ff"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill-opacity"</span>, <span class="hljs-number">0.5</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"none"</span>);
+
+      g.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".debug-dgt-corner"</span>)
+        .<span class="hljs-title function_">data</span>([
+          [marginLeft, marginTop],
+          [width - marginRight, marginTop],
+          [width - marginRight, height - marginBottom],
+          [marginLeft, height - marginBottom]
+        ])
+        .<span class="hljs-title function_">join</span>(<span class="hljs-string">"circle"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"debug-dgt-corner"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"#0ff"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d[<span class="hljs-number">0</span>])
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d[<span class="hljs-number">1</span>])
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>);
+
+      g.<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"graticules-intersection-points"</span>)
+        .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".graticules-intersection-point"</span>)
+        .<span class="hljs-title function_">data</span>(pos)
+        .<span class="hljs-title function_">join</span>(<span class="hljs-string">"circle"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"graticules-intersection-point"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">4</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"none"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">2</span>)
+        .<span class="hljs-title function_">each</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">d</span>) {
+          <span class="hljs-keyword">const</span> [cx, cy] = <span class="hljs-title function_">projection</span>(d);
+          d3.<span class="hljs-title function_">select</span>(<span class="hljs-variable language_">this</span>)
+            .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, cx)
+            .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, cy)
+            .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, d.<span class="hljs-property">type</span> === <span class="hljs-string">"longitude"</span> ? <span class="hljs-string">"red"</span> : <span class="hljs-string">"orange"</span>);
+        });
+    }
+  }
+
+  drawGraticuleTicks.<span class="hljs-property">margins</span> = {
+    <span class="hljs-attr">x</span>: <span class="hljs-number">20</span>,
+    <span class="hljs-attr">y</span>: <span class="hljs-number">20</span>
+  };
+  drawGraticuleTicks.<span class="hljs-property">positions</span> = defaultPositions;
+
+  <span class="hljs-keyword">return</span> drawGraticuleTicks;
+})()
+</code></pre>
+<h4 id="drawlabels" tabindex="-1"><a class="observablehq-header-anchor" href="#drawlabels"><code>drawLabels</code></a></h4>
+<p>Uses <a href="https://github.com/mapbox/polylabel" target="_blank" rel="noopener noreferrer">@mapbox/polylabel</a> to compute label positions.</p>
+<div class="observablehq observablehq--block"><!--:72aa9bcd:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">drawLabels</span>(<span class="hljs-params">{ selection, projection, layer, debug }</span>) {
+  <span class="hljs-keyword">let</span> {
+    geojson,
+    label,
+    callout = <span class="hljs-literal">false</span>,
+    fontFamily = <span class="hljs-string">"inherit"</span>,
+    fontSize = <span class="hljs-number">12</span>,
+    fontWeight = <span class="hljs-string">"500"</span>,
+    lineHeight,
+    fontFill = <span class="hljs-string">"black"</span>,
+    fontStroke = <span class="hljs-string">"white"</span>,
+    fontStrokeWidth = <span class="hljs-number">3</span>,
+    stroke = <span class="hljs-string">"black"</span>,
+    strokeWidth = <span class="hljs-number">1</span>,
+    strokeOpacity = <span class="hljs-number">1</span>,
+    strokeLinecap = <span class="hljs-string">"round"</span>,
+    strokeLinejoin = <span class="hljs-string">"round"</span>,
+    dominantBaseline,
+    textAnchor,
+    dLat = <span class="hljs-number">0</span>,
+    dLon = <span class="hljs-number">0</span>,
+    dCLat = <span class="hljs-number">0</span>,
+    dCLon = <span class="hljs-number">0</span>,
+    calloutStroke = <span class="hljs-string">"black"</span>,
+    calloutStrokeWidth = <span class="hljs-number">1.25</span>,
+    callOutStrokeDasharray = <span class="hljs-string">"none"</span>,
+    callOutStrokeOpacity = <span class="hljs-number">1</span>,
+    callOutStrokeLinecap = <span class="hljs-string">"round"</span>,
+    callOutStrokeLinejoin = <span class="hljs-string">"round"</span>,
+    calloutPadding = <span class="hljs-number">3</span>
+  } = layer;
+  <span class="hljs-keyword">if</span> (geojson == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+
+  <span class="hljs-keyword">const</span> labelGenerator =
+    <span class="hljs-keyword">typeof</span> label === <span class="hljs-string">"function"</span> ? label : <span class="hljs-function">() =&gt;</span> label || <span class="hljs-string">""</span>;
+  <span class="hljs-keyword">const</span> F = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(geojson.<span class="hljs-property">features</span>) ? [...geojson.<span class="hljs-property">features</span>] : [geojson];
+
+  <span class="hljs-keyword">const</span> dLatFn = <span class="hljs-keyword">typeof</span> dLat === <span class="hljs-string">"function"</span> ? dLat : <span class="hljs-function">() =&gt;</span> dLat;
+  <span class="hljs-keyword">const</span> dLonFn = <span class="hljs-keyword">typeof</span> dLon === <span class="hljs-string">"function"</span> ? dLon : <span class="hljs-function">() =&gt;</span> dLon;
+
+  <span class="hljs-keyword">const</span> dCLatFn = <span class="hljs-keyword">typeof</span> dCLat === <span class="hljs-string">"function"</span> ? dCLat : <span class="hljs-function">() =&gt;</span> dCLat;
+  <span class="hljs-keyword">const</span> dCLonFn = <span class="hljs-keyword">typeof</span> dCLon === <span class="hljs-string">"function"</span> ? dCLon : <span class="hljs-function">() =&gt;</span> dCLon;
+
+  <span class="hljs-keyword">const</span> line = d3.<span class="hljs-title function_">line</span>();
+
+  <span class="hljs-keyword">let</span> <span class="hljs-variable constant_">LC</span> = F.<span class="hljs-title function_">map</span>(computeLabelPole);
+  <span class="hljs-keyword">let</span> <span class="hljs-variable constant_">CC</span> = [...<span class="hljs-variable constant_">LC</span>];
+  <span class="hljs-variable constant_">LC</span> = <span class="hljs-variable constant_">LC</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[lon, lat], i</span>) =&gt;</span> [
+    lon + <span class="hljs-title function_">dLonFn</span>(F[i], i),
+    lat + <span class="hljs-title function_">dLatFn</span>(F[i], i)
+  ]);
+  <span class="hljs-variable constant_">CC</span> = <span class="hljs-variable constant_">CC</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[lon, lat], i</span>) =&gt;</span> [
+    lon + <span class="hljs-title function_">dCLonFn</span>(F[i], i),
+    lat + <span class="hljs-title function_">dCLatFn</span>(F[i], i)
+  ]);
+
+  selection.<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"labels"</span>);
+
+  <span class="hljs-keyword">const</span> labels = selection
+    .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".label-group"</span>)
+    .<span class="hljs-title function_">data</span>(F)
+    .<span class="hljs-title function_">join</span>(<span class="hljs-string">"g"</span>)
+    .<span class="hljs-title function_">join</span>(<span class="hljs-string">"text"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"label-group"</span>);
+
+  labels
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"text"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-family"</span>, fontFamily)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-size"</span>, fontSize)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-weight"</span>, fontWeight)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, fontFill)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, fontStroke)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, fontStrokeWidth)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linejoin"</span>, strokeLinejoin)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, strokeLinecap)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dominant-baseline"</span>, dominantBaseline)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, textAnchor)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"paint-order"</span>, <span class="hljs-string">"stroke"</span>);
+
+  <span class="hljs-comment">// Insert label text and break in lines</span>
+  labels.<span class="hljs-title function_">each</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">d, i</span>) {
+    <span class="hljs-keyword">const</span> s = d3.<span class="hljs-title function_">select</span>(<span class="hljs-variable language_">this</span>).<span class="hljs-title function_">select</span>(<span class="hljs-string">"text"</span>);
+    <span class="hljs-keyword">const</span> [x, y] = <span class="hljs-title function_">projection</span>(<span class="hljs-variable constant_">LC</span>[i]);
+
+    s.<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, x)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, y)
+      .<span class="hljs-title function_">call</span>(multilineText, {
+        fontSize,
+        lineHeight,
+        textAnchor,
+        dominantBaseline,
+        <span class="hljs-attr">textFn</span>: <span class="hljs-function">(<span class="hljs-params">d, i</span>) =&gt;</span> <span class="hljs-title function_">labelGenerator</span>(d, i)
+      });
+
+    <span class="hljs-keyword">if</span> (debug) {
+      selection
+        .<span class="hljs-title function_">append</span>(<span class="hljs-string">"circle"</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, x)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, y)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">2</span>)
+        .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"#f0f"</span>);
+    }
+  });
+
+  <span class="hljs-comment">// Add arrows</span>
+  <span class="hljs-keyword">if</span> (callout) {
+    labels.<span class="hljs-title function_">each</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">d, i</span>) {
+      <span class="hljs-keyword">const</span> label = d3.<span class="hljs-title function_">select</span>(<span class="hljs-variable language_">this</span>);
+      <span class="hljs-keyword">const</span> labelText = label.<span class="hljs-title function_">select</span>(<span class="hljs-string">"text"</span>);
+      <span class="hljs-keyword">const</span> [x, y] = <span class="hljs-title function_">projection</span>(<span class="hljs-variable constant_">LC</span>[i]);
+      <span class="hljs-keyword">const</span> [cx, cy] = <span class="hljs-title function_">projection</span>(<span class="hljs-variable constant_">CC</span>[i]);
+
+      <span class="hljs-comment">// Draw the arrows on next cycle to get bounding box of the label</span>
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> padding = calloutPadding + calloutStrokeWidth / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">const</span> rect = labelText.<span class="hljs-title function_">node</span>().<span class="hljs-title function_">getBBox</span>();
+        <span class="hljs-keyword">let</span> x1 = cx;
+        <span class="hljs-keyword">let</span> y1 = cy;
+        <span class="hljs-keyword">let</span> x2 = rect.<span class="hljs-property">x</span>;
+        <span class="hljs-keyword">let</span> y2 = rect.<span class="hljs-property">y</span> + rect.<span class="hljs-property">height</span> + padding;
+        <span class="hljs-keyword">let</span> x3 = rect.<span class="hljs-property">x</span> + rect.<span class="hljs-property">width</span>;
+        <span class="hljs-keyword">let</span> y3 = y2;
+
+        <span class="hljs-comment">// Connect on right edge</span>
+        <span class="hljs-keyword">if</span> (rect.<span class="hljs-property">x</span> + rect.<span class="hljs-property">width</span> / <span class="hljs-number">2</span> &lt; cx) {
+          x3 = rect.<span class="hljs-property">x</span>;
+          x2 = rect.<span class="hljs-property">x</span> + rect.<span class="hljs-property">width</span>;
+        }
+
+        <span class="hljs-keyword">if</span> (rect.<span class="hljs-property">y</span> &gt; cy) {
+          y2 = rect.<span class="hljs-property">y</span> - padding;
+          y3 = y2;
+        }
+
+        label
+          .<span class="hljs-title function_">append</span>(<span class="hljs-string">"path"</span>)
+          .<span class="hljs-title function_">attr</span>(
+            <span class="hljs-string">"d"</span>,
+            <span class="hljs-title function_">line</span>([
+              [x1, y1],
+              [x2, y2],
+              [x3, y3]
+            ])
+          )
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"none"</span>)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, calloutStroke)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, calloutStrokeWidth)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-dasharray"</span>, callOutStrokeDasharray)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-opacity"</span>, callOutStrokeOpacity)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, callOutStrokeLinecap)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-join"</span>, callOutStrokeLinejoin);
+
+        <span class="hljs-keyword">if</span> (debug) {
+          label
+            .<span class="hljs-title function_">append</span>(<span class="hljs-string">"rect"</span>)
+            .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, rect.<span class="hljs-property">x</span>)
+            .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, rect.<span class="hljs-property">y</span>)
+            .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, rect.<span class="hljs-property">width</span>)
+            .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, rect.<span class="hljs-property">height</span>)
+            .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"none"</span>)
+            .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"#f0f"</span>);
+        }
+      });
+
+      <span class="hljs-keyword">if</span> (debug) {
+        label
+          .<span class="hljs-title function_">append</span>(<span class="hljs-string">"circle"</span>)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, cx)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, cy)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">2</span>)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"none"</span>)
+          .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"#f0f"</span>);
+      }
+    });
+  }
+}
+</code></pre>
+<h4 id="drawsymbols" tabindex="-1"><a class="observablehq-header-anchor" href="#drawsymbols"><code>drawSymbols</code></a></h4>
+<div class="observablehq observablehq--block"><!--:1e9ff93f:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> symbols = <span class="hljs-string">"circle cross diamond square star triangle wye"</span>
+  .<span class="hljs-title function_">split</span>(<span class="hljs-regexp">/ /</span>)
+  .<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">obj, n, i</span>) =&gt;</span> ({ [n]: d3.<span class="hljs-property">symbolsFill</span>[i], ...obj }), {})
+
+</code></pre>
+<div class="observablehq observablehq--block"><!--:c0b25f17:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">drawSymbols</span>(<span class="hljs-params">{ selection, projection, layer }</span>) {
+  <span class="hljs-keyword">const</span> {
+    geojson,
+    size = <span class="hljs-number">64</span>,
+    symbol = <span class="hljs-string">"circle"</span>,
+    fill = <span class="hljs-string">"black"</span>,
+    fillOpacity = <span class="hljs-string">"1"</span>,
+    stroke = <span class="hljs-string">"none"</span>,
+    strokeWidth = <span class="hljs-number">0.75</span>,
+    strokeOpacity = <span class="hljs-number">1</span>,
+    strokeLinecap = <span class="hljs-string">"round"</span>,
+    strokeLinejoin = <span class="hljs-string">"round"</span>,
+    strokeDasharray = <span class="hljs-string">"none"</span>,
+    style
+  } = layer;
+
+  <span class="hljs-keyword">if</span> (geojson == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+
+  <span class="hljs-keyword">let</span> features = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(geojson.<span class="hljs-property">features</span>)
+    ? [...geojson.<span class="hljs-property">features</span>]
+    : [geojson];
+
+  <span class="hljs-keyword">const</span> L = features.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">f</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (f?.<span class="hljs-property">geometry</span>?.<span class="hljs-property">type</span> === <span class="hljs-string">"Point"</span>) <span class="hljs-keyword">return</span> f.<span class="hljs-property">geometry</span>.<span class="hljs-property">coordinates</span>;
+    <span class="hljs-keyword">return</span> d3.<span class="hljs-title function_">geoCentroid</span>(f);
+  });
+
+  <span class="hljs-keyword">const</span> symbolObj = symbols[symbol] ?? symbols[<span class="hljs-string">"cirlce"</span>];
+  <span class="hljs-keyword">const</span> mark = d3.<span class="hljs-title function_">symbol</span>(symbolObj).<span class="hljs-title function_">size</span>(size);
+
+  selection
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+    .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"path"</span>)
+    .<span class="hljs-title function_">data</span>(L)
+    .<span class="hljs-title function_">join</span>(<span class="hljs-string">"path"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"d"</span>, <span class="hljs-title function_">mark</span>())
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-function">(<span class="hljs-params">pos</span>) =&gt;</span> <span class="hljs-string">`translate(<span class="hljs-subst">${projection(pos)}</span>)`</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, fill)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill-opacity"</span>, fillOpacity)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, stroke)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-width"</span>, strokeWidth)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-opacity"</span>, strokeOpacity)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linecap"</span>, strokeLinecap)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-linejoin"</span>, strokeLinejoin)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke-dasharray"</span>, strokeDasharray)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"style"</span>, style);
+}
+</code></pre>
+<h3 id="markings" tabindex="-1"><a class="observablehq-header-anchor" href="#markings">Markings</a></h3>
+<div class="observablehq observablehq--block"><!--:5bd1cf4f:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">drawScaleBar</span>(<span class="hljs-params">{
+  projection,
+  width,
+  height,
+  padding,
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  units,
+  svgBaseStyles,
+  scaleHeight = <span class="hljs-number">48</span>,
+  debug
+}</span>) {
+  <span class="hljs-comment">//const node = DOM.svg(width, scaleHeight);</span>
+  <span class="hljs-keyword">const</span> node = <span class="hljs-variable constant_">DOM</span>.<span class="hljs-title function_">svg</span>(width, scaleHeight);
+  <span class="hljs-keyword">const</span> svg = d3.<span class="hljs-title function_">select</span>(node).<span class="hljs-title function_">attr</span>(<span class="hljs-string">"style"</span>, svgBaseStyles);
+
+  <span class="hljs-keyword">const</span> x = <span class="hljs-number">3</span>;
+  <span class="hljs-keyword">const</span> y = <span class="hljs-number">24</span>;
+
+  <span class="hljs-keyword">if</span> (debug) {
+    svg
+      .<span class="hljs-title function_">append</span>(<span class="hljs-string">"rect"</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, width)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, scaleHeight)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"#ff0"</span>);
+  }
+
+  <span class="hljs-keyword">const</span> scaleBar = d3GeoScaleBar
+    .<span class="hljs-title function_">geoScaleBar</span>()
+    .<span class="hljs-title function_">projection</span>(projection)
+    .<span class="hljs-title function_">size</span>([width, height])
+    .<span class="hljs-title function_">label</span>(units == <span class="hljs-string">"miles"</span> ? <span class="hljs-string">"Miles"</span> : <span class="hljs-string">"Kilometres"</span>)
+    .<span class="hljs-title function_">orient</span>(d3GeoScaleBar.<span class="hljs-property">geoScaleTop</span>)
+    .<span class="hljs-title function_">tickSize</span>(<span class="hljs-number">6</span>)
+    .<span class="hljs-title function_">left</span>(<span class="hljs-number">0</span>)
+    .<span class="hljs-title function_">top</span>(<span class="hljs-number">0</span>)
+    .<span class="hljs-title function_">units</span>(
+      units === <span class="hljs-string">"miles"</span>
+        ? d3GeoScaleBar.<span class="hljs-property">geoScaleMiles</span>
+        : d3GeoScaleBar.<span class="hljs-property">geoScaleKilometers</span>
+    );
+  <span class="hljs-keyword">const</span> bar = svg
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">`translate(<span class="hljs-subst">${x}</span>,<span class="hljs-subst">${y}</span>)`</span>)
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>);
+
+  bar.<span class="hljs-title function_">call</span>(scaleBar);
+  bar.<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-family"</span>, <span class="hljs-string">"inherit"</span>);
+
+  <span class="hljs-keyword">return</span> node;
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:52b0b142:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">drawNorthArrow</span>(<span class="hljs-params">{ projection, width, height } = {}</span>) {
+  <span class="hljs-keyword">const</span> angle = <span class="hljs-title function_">computeAngleToNorthAtCentroid</span>(projection, width, height);
+  <span class="hljs-keyword">return</span> svg<span class="hljs-string">`&lt;svg
+    viewBox=<span class="hljs-subst">${[-<span class="hljs-number">31</span>, -<span class="hljs-number">31</span>, <span class="hljs-number">62</span>, <span class="hljs-number">62</span>]}</span> width="62" height="62" style=<span class="hljs-subst">${{
+    display: <span class="hljs-string">"block"</span>,
+    maxWidth: <span class="hljs-string">"100%"</span>,
+    height: <span class="hljs-string">"auto"</span>
+  }}</span>&gt;
+&lt;g 
+  transform="rotate(<span class="hljs-subst">${angle}</span> 0 0)
+             translate(-19 -31)
+  "&gt;<span class="hljs-subst">${northArrow()}</span>&lt;/g&gt;&lt;svg&gt;`</span>;
+}
+</code></pre>
+<h3 id="helpers" tabindex="-1"><a class="observablehq-header-anchor" href="#helpers">Helpers</a></h3>
+<div class="observablehq observablehq--block"><!--:7cbc1bef:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">computeLabelPole</span>(<span class="hljs-params">feat, precision</span>) {
+  <span class="hljs-keyword">if</span> (feat.<span class="hljs-property">geometry</span>.<span class="hljs-property">type</span> === <span class="hljs-string">"Polygon"</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">polylabel</span>(feat.<span class="hljs-property">geometry</span>.<span class="hljs-property">coordinates</span>, precision);
+  }
+
+  <span class="hljs-keyword">return</span> d3.<span class="hljs-title function_">geoCentroid</span>(feat);
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:38afec0a:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">multilineText</span>(<span class="hljs-params">
+  el,
+  {
+    fontSize = <span class="hljs-number">10</span>,
+    lineHeight = <span class="hljs-number">1.05</span>,
+    textAnchor = <span class="hljs-string">"middle"</span>,
+    dominantBaseline = <span class="hljs-string">"middle"</span>,
+    textFn
+  } = {}
+</span>) {
+  el.<span class="hljs-title function_">each</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">d</span>) {
+    <span class="hljs-keyword">const</span> text = <span class="hljs-title function_">textFn</span>(d);
+    <span class="hljs-keyword">if</span> (text == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-keyword">const</span> lines = text.<span class="hljs-title function_">split</span>(<span class="hljs-string">"\n"</span>);
+    <span class="hljs-keyword">const</span> textContentHeight = (lines.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>) * lineHeight * fontSize;
+
+    <span class="hljs-keyword">const</span> el = d3.<span class="hljs-title function_">select</span>(<span class="hljs-variable language_">this</span>);
+
+    <span class="hljs-keyword">const</span> anchor = {
+      <span class="hljs-attr">x</span>: +el.<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>),
+      <span class="hljs-attr">y</span>: +el.<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>)
+    };
+
+    <span class="hljs-keyword">const</span> dy =
+      dominantBaseline === <span class="hljs-string">"middle"</span>
+        ? -textContentHeight / <span class="hljs-number">2</span>
+        : dominantBaseline === <span class="hljs-string">"hanging"</span>
+        ? -textContentHeight
+        : <span class="hljs-number">0</span>;
+
+    el
+      <span class="hljs-comment">// .attr("font-family", fontFamily)</span>
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-size"</span>, fontSize)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dominant-baseline"</span>, dominantBaseline)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, textAnchor)
+      .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"tspan"</span>)
+      .<span class="hljs-title function_">data</span>(lines)
+      .<span class="hljs-title function_">join</span>(<span class="hljs-string">"tspan"</span>)
+      .<span class="hljs-title function_">text</span>(<span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, anchor.<span class="hljs-property">x</span>)
+      .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, <span class="hljs-function">(<span class="hljs-params">d, i</span>) =&gt;</span> anchor.<span class="hljs-property">y</span> + i * lineHeight * fontSize + dy);
+  });
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:13203fc9:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">computeAngleToNorthAtCentroid</span>(<span class="hljs-params">projection, width, height</span>) {
+  <span class="hljs-keyword">const</span> [lon, lat] = projection.<span class="hljs-title function_">invert</span>([width / <span class="hljs-number">2</span>, height / <span class="hljs-number">2</span>]);
+
+  <span class="hljs-keyword">const</span> c = <span class="hljs-title function_">projection</span>([lon, lat]);
+  <span class="hljs-keyword">const</span> cNext = <span class="hljs-title function_">projection</span>([lon + <span class="hljs-number">1</span>, lat]);
+
+  <span class="hljs-keyword">const</span> rad = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">atan2</span>(cNext[<span class="hljs-number">0</span>] - c[<span class="hljs-number">0</span>], cNext[<span class="hljs-number">1</span>] - c[<span class="hljs-number">1</span>]);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">radiansToDegrees</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span> / <span class="hljs-number">2</span> - rad);
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:25cc5f37:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">radiansToDegrees</span>(<span class="hljs-params">radians</span>) {
+  <span class="hljs-keyword">const</span> degrees = radians % (<span class="hljs-number">2</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span>);
+  <span class="hljs-keyword">return</span> (degrees * <span class="hljs-number">180</span>) / <span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span>;
+}
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:7455602c:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">getHeight</span>({
+  <span class="hljs-attr">projection</span>: d3.<span class="hljs-title function_">geoMercator</span>(),
+  <span class="hljs-attr">extentGeo</span>: <span class="hljs-title function_">featureCollectionFromLayers</span>([
+    { <span class="hljs-attr">geojson</span>: baliForestGeo },
+    { <span class="hljs-attr">geojson</span>: baliRiversGeo }
+  ]),
+  <span class="hljs-attr">width</span>: <span class="hljs-number">1000</span>,
+  <span class="hljs-attr">padding</span>: <span class="hljs-number">1</span>
+})
+</code></pre>
+<div class="observablehq observablehq--block"><!--:559f3027:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getHeight</span>(<span class="hljs-params">{
+  projection,
+  extentGeo,
+  width,
+  padding = <span class="hljs-number">0</span>,
+  marginTop = <span class="hljs-number">0</span>,
+  marginRight = <span class="hljs-number">0</span>,
+  marginLeft = <span class="hljs-number">0</span>,
+  marginBottom = <span class="hljs-number">0</span>
+}</span>) {
+  <span class="hljs-keyword">const</span> [[x0, y0], [x1, y1]] = d3
+    .<span class="hljs-title function_">geoPath</span>(
+      projection.<span class="hljs-title function_">fitWidth</span>(
+        width - padding * <span class="hljs-number">2</span> - marginLeft - marginRight,
+        extentGeo
+      )
+    )
+    .<span class="hljs-title function_">bounds</span>(extentGeo);
+
+  <span class="hljs-keyword">let</span> trans = projection.<span class="hljs-title function_">translate</span>();
+  projection.<span class="hljs-title function_">translate</span>([
+    trans[<span class="hljs-number">0</span>] + padding + marginLeft,
+    trans[<span class="hljs-number">1</span>] + padding + marginTop
+  ]);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">ceil</span>(y1 - y0) + padding * <span class="hljs-number">2</span> + marginTop + marginBottom;
+}
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:73b386ee:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">featureCollectionFromLayers</span>([
+  { <span class="hljs-attr">geojson</span>: baliForestGeo },
+  { <span class="hljs-attr">geojson</span>: baliRiversGeo }
+])
+</code></pre>
+<div class="observablehq observablehq--block"><!--:84ccadbd:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// Based on https://github.com/neocarto/bertin/blob/main/src/helpers/height.js</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">featureCollectionFromLayers</span>(<span class="hljs-params">layers</span>) {
+  <span class="hljs-keyword">let</span> L = layers
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">l</span>) =&gt;</span> l.<span class="hljs-property">geojson</span>)
+    .<span class="hljs-title function_">filter</span>(<span class="hljs-title class_">Boolean</span>)
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">f</span>) =&gt;</span>
+      <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(f.<span class="hljs-property">features</span>) ? f.<span class="hljs-property">features</span> : [f] <span class="hljs-comment">// Assume it is a single feature</span>
+    );
+
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">"FeatureCollection"</span>,
+    <span class="hljs-attr">features</span>: L.<span class="hljs-title function_">flat</span>()
+  };
+}
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:787bd22c:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">getExtentAsFeature</span>(baliForestGeo)
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:739670b3:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">getExtentAsFeature</span>([
+  [<span class="hljs-number">114.4409786</span>, -<span class="hljs-number">8.7116904</span>],
+  [<span class="hljs-number">115.672946</span>, -<span class="hljs-number">8.0982983</span>]
+])
+</code></pre>
+<div class="observablehq observablehq--block"><!--:007a9cff:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getExtentAsFeature</span>(<span class="hljs-params">extent</span>) {
+  <span class="hljs-keyword">let</span> feat;
+  <span class="hljs-keyword">if</span> (
+    <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(extent) &amp;&amp;
+    <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(extent[<span class="hljs-number">0</span>]) &amp;&amp;
+    <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(extent[<span class="hljs-number">1</span>])
+  ) {
+    feat = <span class="hljs-title function_">bboxPolygon</span>(extent.<span class="hljs-title function_">flat</span>());
+  } <span class="hljs-keyword">else</span> {
+    feat = <span class="hljs-title function_">bboxPolygon</span>(<span class="hljs-title function_">bbox</span>(extent));
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">rewind</span>(feat, <span class="hljs-literal">true</span>);
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:51d554c0:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getBoundsAsFeature</span>(<span class="hljs-params">{
+  projection,
+  width,
+  height,
+  marginTop = <span class="hljs-number">0</span>,
+  marginRight = <span class="hljs-number">0</span>,
+  marginLeft = <span class="hljs-number">0</span>,
+  marginBottom = <span class="hljs-number">0</span>,
+  precision = <span class="hljs-number">2.5</span>
+} = {}</span>) {
+  <span class="hljs-keyword">const</span> p1 = [marginLeft, marginTop];
+  <span class="hljs-keyword">const</span> p2 = [width - marginRight, marginTop];
+  <span class="hljs-keyword">const</span> p3 = [width - marginRight, height - marginBottom];
+  <span class="hljs-keyword">const</span> p4 = [marginLeft, height - marginBottom];
+
+  <span class="hljs-keyword">const</span> vertices = [p1, p2, p3, p4, p1];
+
+  <span class="hljs-keyword">const</span> viewportSize = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(
+    width - marginRight - marginLeft,
+    height - marginTop - marginTop
+  );
+  <span class="hljs-keyword">const</span> parts = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(viewportSize / precision);
+
+  <span class="hljs-keyword">let</span> lines = <span class="hljs-title function_">pairUp</span>(vertices);
+  lines = lines
+    .<span class="hljs-title function_">flatMap</span>(<span class="hljs-function">(<span class="hljs-params">[p1, p2]</span>) =&gt;</span> <span class="hljs-title function_">partitionLine</span>(...p1, ...p2, parts))
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">l</span>) =&gt;</span> l[<span class="hljs-number">0</span>]);
+  lines = [...lines, p1];
+
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">"Polygon"</span>,
+    <span class="hljs-attr">coordinates</span>: [lines.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> projection.<span class="hljs-title function_">invert</span>(p))]
+  };
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:24086012:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">pairUp</span>(<span class="hljs-params">arr</span>) {
+  <span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">res, cur, i, arr</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res;
+    <span class="hljs-keyword">return</span> [...res, [arr[i - <span class="hljs-number">1</span>], cur]];
+  }, []);
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:5d268be6:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">graticuleLabelPositions</span>(<span class="hljs-params">boundsGeo, { step = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>] }</span>) {
+  <span class="hljs-keyword">let</span> i = [];
+  <span class="hljs-keyword">let</span> poly = boundsGeo.<span class="hljs-property">coordinates</span>[<span class="hljs-number">0</span>].<span class="hljs-title function_">slice</span>();
+  <span class="hljs-keyword">let</span> cur = poly[<span class="hljs-number">0</span>];
+  <span class="hljs-comment">// poly.push(cur);</span>
+  <span class="hljs-comment">// let p0 = cur;</span>
+  poly.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> {
+    <span class="hljs-comment">// Above 80° longitude, we can reduce the lines</span>
+    <span class="hljs-comment">// I think, that's default on d3.graticules</span>
+    <span class="hljs-keyword">let</span> latStep = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(p[<span class="hljs-number">1</span>]) &gt; <span class="hljs-number">80</span> ? <span class="hljs-number">90</span> : step[<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">let</span> lonStep = step[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(p[<span class="hljs-number">1</span>] / latStep) != <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(cur[<span class="hljs-number">1</span>] / latStep)) {
+      p.<span class="hljs-property">type</span> = <span class="hljs-string">"latitude"</span>;
+      i.<span class="hljs-title function_">push</span>(p);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(p[<span class="hljs-number">0</span>] / lonStep) != <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(cur[<span class="hljs-number">0</span>] / lonStep)) {
+      p.<span class="hljs-property">type</span> = <span class="hljs-string">"longitude"</span>;
+      i.<span class="hljs-title function_">push</span>(p);
+    }
+    cur = p;
+  });
+
+  <span class="hljs-keyword">return</span> i;
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:b13fe6e8:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isNumber</span>(<span class="hljs-params">value</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">"number"</span> &amp;&amp; <span class="hljs-built_in">isFinite</span>(value);
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:b43adef6:--></div>
+<div class="observablehq observablehq--block"><!--:6716c0ca:--></div>
+<div class="observablehq observablehq--block"><!--:cd640831:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> defaultFontFamily = <span class="hljs-string">`-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"`</span>
+</code></pre>
+<h3 id="css-helpers" tabindex="-1"><a class="observablehq-header-anchor" href="#css-helpers">CSS Helpers</a></h3>
+<div class="observablehq observablehq--block"><!--:29e294aa:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> initializeStyles = (<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">let</span> initialized;
+  <span class="hljs-keyword">const</span> inputsNs = <span class="hljs-title class_">Inputs</span>.<span class="hljs-title function_">text</span>().<span class="hljs-property">classList</span>[<span class="hljs-number">0</span>];
+
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">if</span> (initialized) <span class="hljs-keyword">return</span>;
+
+    initialized = <span class="hljs-literal">true</span>;
+
+    <span class="hljs-keyword">const</span> styles = html`<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+.</span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="language-css"> <span class="hljs-selector-class">.flow</span> &gt; * + * {
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-built_in">var</span>(--flow-space, <span class="hljs-number">1rem</span>);
+}
+
+.</span></span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="language-css"> <span class="hljs-selector-class">.flow-child</span> &gt; * &gt; * + * {
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-built_in">var</span>(--flow-space, <span class="hljs-number">1rem</span>);
+}
+
+.</span></span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="language-css"> <span class="hljs-selector-class">.flow-space-xs</span> {
+  <span class="hljs-attr">--flow-space</span>: .<span class="hljs-number">25rem</span>;
+}
+
+.</span></span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="language-css"> <span class="hljs-selector-class">.flow-space-s</span> {
+  <span class="hljs-attr">--flow-space</span>: .<span class="hljs-number">5rem</span>;
+}
+
+.</span></span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="language-css"> <span class="hljs-selector-class">.flow-space-m</span> {
+  <span class="hljs-attr">--flow-space</span>: <span class="hljs-number">1rem</span>;
+}
+
+.</span></span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="language-css"> <span class="hljs-selector-class">.flow-space-l</span> {
+  <span class="hljs-attr">--flow-space</span>: <span class="hljs-number">1.5rem</span>;
+}
+
+.</span></span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="language-css"> <span class="hljs-selector-class">.flow-space-xl</span> {
+  <span class="hljs-attr">--flow-space</span>: <span class="hljs-number">1.5rem</span>;
+}
+
+
+.</span></span><span class="hljs-subst">${ns}</span><span class="language-xml"><span class="language-css">__aside * {
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">0</span>;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>`</span>;
+
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">"head"</span>).<span class="hljs-title function_">append</span>(styles);
+
+    invalidation.<span class="hljs-title function_">then</span>(
+      <span class="hljs-function">() =&gt;</span> styles.<span class="hljs-property">parentNode</span> &amp;&amp; styles.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">removeChild</span>(styles)
+    );
+  };
+})()
+</code></pre>
+<div class="observablehq observablehq--block"><!--:65a23044:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> ns = (<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> base = <span class="hljs-title class_">Inputs</span>.<span class="hljs-title function_">text</span>().<span class="hljs-property">classList</span>[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">return</span> base.<span class="hljs-title function_">replace</span>(<span class="hljs-string">"oi-"</span>, <span class="hljs-string">"map-folio-"</span>);
+})()
+</code></pre>
+<h3 id="patterns" tabindex="-1"><a class="observablehq-header-anchor" href="#patterns">Patterns</a></h3>
+<p>These can be moved to a separate notebook.</p>
+<div class="observablehq observablehq--block"><!--:6015a9af:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> patterns = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([
+  [
+    <span class="hljs-string">"water"</span>,
+    svg<span class="hljs-string">`&lt;pattern patternTransform="scale(0.5)" patternUnits="userSpaceOnUse" width="24" height="24"&gt;
+  &lt;rect width="24" height="24" fill="hsl(217, 88%, 68%)" /&gt;
+  &lt;path fill="none" stroke-width=".75" stroke="hsl(217, 88%, 79%)" d="M12.5 9a.5.5 0 0 0-1 0h1ZM0 20.5c3.134 0 6.25-1.303 8.582-3.376C10.915 15.05 12.5 12.172 12.5 9h-1c0 2.828-1.415 5.45-3.582 7.376C5.75 18.303 2.866 19.5 0 19.5v1ZM11.5 9c0 3.172 1.585 6.05 3.918 8.124C17.75 19.197 20.866 20.5 24 20.5v-1c-2.866 0-5.75-1.197-7.918-3.124C13.915 14.45 12.5 11.828 12.5 9h-1Z" /&gt;
+&lt;/pattern&gt;`</span>
+  ]
+])
+</code></pre>
+<div class="observablehq observablehq--block"><!--:af0e034f:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getSvgPatternId</span>(<span class="hljs-params">key, namespace = ns ?? <span class="hljs-string">""</span></span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${namespace}</span>-pattern-<span class="hljs-subst">${key}</span>`</span>;
+}
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:2527d9d7:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">getSvgPatternId</span>(<span class="hljs-string">'water'</span>)
+</code></pre>
+<div class="observablehq observablehq--block"><!--:fad1904f:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getSvgPatternUrl</span>(<span class="hljs-params">key</span>) {
+  <span class="hljs-keyword">const</span> id = <span class="hljs-title function_">getSvgPatternId</span>(key);
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`url(#<span class="hljs-subst">${id}</span>)`</span>
+}
+</code></pre>
+<div class="observablehq observablehq--block"><!--:cdfd49a0:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getSvgPattern</span>(<span class="hljs-params">key, patternsMap = patterns</span>) {
+  <span class="hljs-keyword">const</span> p = patternsMap.<span class="hljs-title function_">get</span>(key);
+  <span class="hljs-keyword">if</span> (p) {
+    <span class="hljs-keyword">const</span> pClone = p.<span class="hljs-title function_">cloneNode</span>(<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">const</span> id = <span class="hljs-title function_">getSvgPatternId</span>(key);
+    pClone.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">"id"</span>, id);
+    <span class="hljs-keyword">return</span> pClone;
+  }
+}
+</code></pre>
+<h2 id="sample-datasets" tabindex="-1"><a class="observablehq-header-anchor" href="#sample-datasets">Sample datasets</a></h2>
+<div class="observablehq observablehq--block"><!--:9e77218a:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> baliForestGeo = <span class="hljs-title class_">FileAttachment</span>(<span class="hljs-string">"./data/bali-forest.geo.json"</span>).<span class="hljs-title function_">json</span>()
+</code></pre>
+<div class="observablehq observablehq--block"><!--:fbe47111:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> baliRiversGeo = <span class="hljs-title class_">FileAttachment</span>(<span class="hljs-string">"./data/bali-rivers.geo.json"</span>).<span class="hljs-title function_">json</span>()
+</code></pre>
+<div class="observablehq observablehq--block"><!--:2e849196:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> largestWaterBodiesGeo = (<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> top3WaterBodies = baliWaterBodiesGeo.<span class="hljs-property">features</span>.<span class="hljs-title function_">sort</span>(
+    <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> d3.<span class="hljs-title function_">geoArea</span>(b) - d3.<span class="hljs-title function_">geoArea</span>(a)
+  );
+
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">"FeatureCollection"</span>,
+    <span class="hljs-attr">features</span>: top3WaterBodies.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>)
+  };
+})()
+</code></pre>
+<div class="observablehq observablehq--block"><!--:57fe19b0:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> baliWaterBodiesGeo = <span class="hljs-title class_">FileAttachment</span>(<span class="hljs-string">"./data/bali-water-bodies.geo.json"</span>).<span class="hljs-title function_">json</span>()
+</code></pre>
+<div class="observablehq observablehq--block"><!--:4238eb95:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> baliGeo = <span class="hljs-title class_">FileAttachment</span>(<span class="hljs-string">"./data/bali@1.geo.json"</span>).<span class="hljs-title function_">json</span>()
+</code></pre>
+<h2 id="imports" tabindex="-1"><a class="observablehq-header-anchor" href="#imports">Imports</a></h2>
+<div class="observablehq observablehq--block"><!--:9eb8fcb4:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">import</span> {<span class="hljs-variable constant_">DOM</span>} <span class="hljs-keyword">from</span> <span class="hljs-string">"./components/DOM.js"</span>;
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:16f2bb52:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-variable constant_">DOM</span>.<span class="hljs-property">svg</span>
+</code></pre>
+<div class="observablehq observablehq--block"><!--:f4e99b98:--></div>
+<div class="observablehq observablehq--block"><!--:32059d8c:--></div>
+<div class="observablehq observablehq--block"><!--:92a10d5b:--></div>
+<div class="observablehq observablehq--block"><!--:60151c3c:--></div>
+<div class="observablehq observablehq--block"><!--:c2df4f8c:--></div>
+<div class="observablehq observablehq--block"><!--:56c1bdaf:--></div>
+<div class="observablehq observablehq--block"><!--:80693bde:--></div>
+<div class="observablehq observablehq--block"><!--:980d8581:--></div>
+<h2 id="changelog" tabindex="-1"><a class="observablehq-header-anchor" href="#changelog">Changelog</a></h2>
+<ul>
+<li>2022-12-07: Add support for <code>active</code> in layers.</li>
+<li>2023-01-05: Add new layer, 'labels'</li>
+<li>2023-01-06: Fixes extent computation failing when any <code>geojson</code> passed is not
+of type <code>FeatureCollection</code>.</li>
+<li>2023-01-07
+<ul>
+<li>Add support for <code>active</code> in legend items.</li>
+<li>Add suppor for callouts with label layer type.</li>
+</ul>
+</li>
+<li>2023-01-10
+<ul>
+<li>Fixes <code>drawSimpleLayer</code> fails on GeoJSONs other than type of
+<code>FeatureCollection</code>.</li>
+</ul>
+</li>
+<li>2023-01-25: Add support pass <code>style</code> attribute for layers, except for type:
+<code>graticule-labels</code>.</li>
+<li>2023-02-23: Add support for symbols layers.</li>
+</ul>
+<h2 id="todos%2Foptimisations-for-future" tabindex="-1"><a class="observablehq-header-anchor" href="#todos%2Foptimisations-for-future">ToDos/Optimisations For Future</a></h2>
+<ul>
+<li>Draw the markings with a single SVG so that spacing marking can be easy. Also the sizing compared to map SVG.</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./"><span>Map Folio</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-07-29T16:48:51">Jul 29, 2024</a>.</div>
+</footer>
+</div>
