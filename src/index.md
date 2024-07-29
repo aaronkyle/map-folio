@@ -1,14 +1,186 @@
 # Map Folio
 
-```js echo
-///import * as d3 from "npm:d3";
+```js
+const baliGeo = FileAttachment("./data/bali@1.geo.json").json()
 ```
 
+```js
+const baliRiversGeo = FileAttachment("./data/bali-rivers.geo.json").json()
+```
+
+```js
+const baliForestGeo = FileAttachment("./data/bali-forest.geo.json").json()
+```
+
+```js
+const baliWaterBodiesGeo = FileAttachment("./data/bali-water-bodies.geo.json").json()
+```
+
+
+```js
+const largestWaterBodiesGeo = (() => {
+  const top3WaterBodies = baliWaterBodiesGeo.features.sort(
+    (a, b) => d3.geoArea(b) - d3.geoArea(a)
+  );
+
+  return {
+    type: "FeatureCollection",
+    features: top3WaterBodies.slice(0, 3)
+  };
+})
+```
+
+
+
+```js
+const activeFeatures = view(Inputs.checkbox(["Rivers", "Water bodies", "Forest"], {
+  label: "Features",
+  value: ["Forest", "Rivers", "Water bodies"]
+}))
+```
+
+```js
+const Γ = view(Inputs.range([-180, 180], {step:0.01, value:-80, label:"Rotate"}))
+```
+
+```js
+const tickPositions = view(Inputs.checkbox(["top", "right", "bottom", "left"], {
+  label: "Graticule Ticks",
+  value: ["top", "right", "bottom", "left"]
+}))
+```
+
+```js
+const graticuleTickInside = view(Inputs.toggle({label: "Place graticule ticks inside", value: false}))
+```
+
+
+```js
+resizable ? resize`${sampleMap}` : html`${sampleMap}`
+```
+
+```js
+const resizable = view(Inputs.toggle({label: "Show preview in a resizable container", value: false}))
+```
+
+```js
+const debug = view(Inputs.toggle({label: "Debug", value: false}))
+```
+
+```js echo
+/// issue here
+drawMap()
+```
+
+
+
+```js
+// Rendered in the resize component above
+const sampleMap = draw(
+  {
+    projection: d3.geoTransverseMercator().rotate([Γ, 0, 0]),
+    background: getSvgPatternUrl("water"), //"hsl(217, 88%, 68%)",
+    // scaleBar: false,
+    // northingArrow: false,
+    extent: baliGeo,
+    patterns: [getSvgPattern("water")],
+    layers: [
+      {
+        geojson: baliGeo,
+        fill: "hsl(42, 46%, 93%)",
+        stroke: "hsl(39, 50%, 90%)"
+      },
+      {
+        active: activeFeatures.includes("Forest"),
+        geojson: baliForestGeo,
+        fill: "hsl(136, 40%, 65%)",
+        stroke: "none"
+      },
+      {
+        active: activeFeatures.includes("Water bodies"),
+        geojson: baliWaterBodiesGeo,
+        fill: "hsl(217, 88%, 79%)",
+        stroke: "none"
+      },
+      {
+        active: activeFeatures.includes("Rivers"),
+        geojson: baliRiversGeo,
+        stroke: "hsl(217, 88%, 68%)"
+      },
+      {
+        type: "graticule",
+        stroke: "white",
+        strokeOpacity: 0.5,
+        step: [0.5, 0.5]
+      },
+      {
+        active: activeFeatures.includes("Water bodies"),
+        type: "labels",
+        callout: true,
+        geojson: largestWaterBodiesGeo,
+        label: (f) => f.properties?.tags?.name,
+        dLat: (f, i) => ((i % 2 === 0 ? 1 : -1) * 1) / 10,
+        textAnchor: "start"
+      },
+      {
+        type: "graticule-labels",
+        step: [0.5, 0.5],
+        tickPositions,
+        place: graticuleTickInside ? "inside" : undefined
+      },
+      { type: "outline" }
+      // {
+      //   type: "custom",
+      //   render: function (svg, map) {
+      //     svg
+      //       .append("g")
+      //       .append("rect")
+      //       .attr("x", map.width / 2)
+      //       .attr("y", map.height / 2)
+      //       .attr("height", 100)
+      //       .attr("width", 200)
+      //       .style("fill", "red");
+      //   }
+      // }
+    ]
+  },
+  {
+    header: `Water Bodies in Bali, Indonesia`,
+    legend: [
+      { label: "Rivers", stroke: "hsl(217, 88%, 68%)" },
+      { label: "Forest", fill: "hsl(136, 40%, 65%)" },
+      { label: "Lakes", fill: "hsl(217, 88%, 79%)" },
+      {
+        label: "Ocean",
+        fill: getSvgPatternUrl("water") //"hsl(217, 88%, 68%)"
+      }
+    ],
+    content: html`<h3>About Bali</h3>
+<p>Bali is a province of Indonesia and the westernmost of the Lesser Sunda Islands. The province is Indonesia's main tourist destination.<br><a href="https://en.wikipedia.org/wiki/Bali">More on Wikipedia</a></p>`,
+    footer: html`<strong>Attribution:</strong> Data are from <a href="https://www.opensteetmap.org">www.opensteetmap.org</a>, made available under ODbL.`
+  },
+  { debug }
+)
+```
+
+
+
+----
+
+
+```js echo
+import * as d3 from "npm:d3";
+```
 
 ```js echo
 import * as htl from "npm:htl";
 // import * from "npm:@observablehq/stdlib";
 ```
+
+```js echo
+htl
+```
+
 
 ```js echo
 // import { northArrow } from "@adb/cartographic-symbols";
@@ -31,11 +203,11 @@ import {rewind} from "./components/rewind.js";
 
 ```
 
-```js
+```js echo
 display(htl.svg)
 ```
 
-```js
+```js echo
 import {context2d} from "./components/DOM.js";
 
 const DOM = context2d;
@@ -283,7 +455,8 @@ const symbols = "circle cross diamond square star triangle wye"
     debug
   }) {
     // Create an SVG element with the specified width and height
-    const node = DOM.svg(width, scaleHeight);
+    //const node = DOM.svg(width, scaleHeight);
+    const node = htl.svg(width, scaleHeight);
     const svg = d3.select(node).attr("style", svgBaseStyles);
   
     const x = 3; // X position for the scale bar
